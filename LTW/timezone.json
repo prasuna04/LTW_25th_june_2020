@@ -1,0 +1,352 @@
+{
+    "TimeZone": [
+        {
+            "_zoneid": "28",
+            "_text": "(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London"
+        },
+        {
+            "_zoneid": "30",
+            "_text": "(GMT) Monrovia, Reykjavik"
+        },
+        {
+            "_zoneid": "72",
+            "_text": "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"
+        },
+        {
+            "_zoneid": "53",
+            "_text": "(GMT+01:00) Brussels, Copenhagen, Madrid, Paris"
+        },
+        {
+            "_zoneid": "14",
+            "_text": "(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb"
+        },
+        {
+            "_zoneid": "71",
+            "_text": "(GMT+01:00) West Central Africa"
+        },
+        {
+            "_zoneid": "83",
+            "_text": "(GMT+02:00) Amman"
+        },
+        {
+            "_zoneid": "84",
+            "_text": "(GMT+02:00) Beirut"
+        },
+        {
+            "_zoneid": "24",
+            "_text": "(GMT+02:00) Cairo"
+        },
+        {
+            "_zoneid": "61",
+            "_text": "(GMT+02:00) Harare, Pretoria"
+        },
+        {
+            "_zoneid": "27",
+            "_text": "(GMT+02:00) Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius"
+        },
+        {
+            "_zoneid": "35",
+            "_text": "(GMT+02:00) Jerusalem"
+        },
+        {
+            "_zoneid": "21",
+            "_text": "(GMT+02:00) Minsk"
+        },
+        {
+            "_zoneid": "86",
+            "_text": "(GMT+02:00) Windhoek"
+        },
+        {
+            "_zoneid": "31",
+            "_text": "(GMT+03:00) Athens, Istanbul, Minsk"
+        },
+        {
+            "_zoneid": "2",
+            "_text": "(GMT+03:00) Baghdad"
+        },
+        {
+            "_zoneid": "49",
+            "_text": "(GMT+03:00) Kuwait, Riyadh"
+        },
+        {
+            "_zoneid": "54",
+            "_text": "(GMT+03:00) Moscow, St. Petersburg, Volgograd"
+        },
+        {
+            "_zoneid": "19",
+            "_text": "(GMT+03:00) Nairobi"
+        },
+        {
+            "_zoneid": "87",
+            "_text": "(GMT+03:00) Tbilisi"
+        },
+        {
+            "_zoneid": "34",
+            "_text": "(GMT+03:30) Tehran"
+        },
+        {
+            "_zoneid": "1",
+            "_text": "(GMT+04:00) Abu Dhabi, Muscat"
+        },
+        {
+            "_zoneid": "88",
+            "_text": "(GMT+04:00) Baku"
+        },
+        {
+            "_zoneid": "9",
+            "_text": "(GMT+04:00) Baku, Tbilisi, Yerevan"
+        },
+        {
+            "_zoneid": "89",
+            "_text": "(GMT+04:00) Port Louis"
+        },
+        {
+            "_zoneid": "47",
+            "_text": "(GMT+04:30) Kabul"
+        },
+        {
+            "_zoneid": "25",
+            "_text": "(GMT+05:00) Ekaterinburg"
+        },
+        {
+            "_zoneid": "90",
+            "_text": "(GMT+05:00) Islamabad, Karachi"
+        },
+        {
+            "_zoneid": "73",
+            "_text": "(GMT+05:00) Islamabad, Karachi, Tashkent"
+        },
+        {
+            "_zoneid": "33",
+            "_text": "(GMT+05:30) Chennai, Kolkata, Mumbai, New Delhi"
+        },
+        {
+            "_zoneid": "62",
+            "_text": "(GMT+05:30) Sri Jayawardenepura"
+        },
+        {
+            "_zoneid": "91",
+            "_text": "(GMT+05:45) Kathmandu"
+        },
+        {
+            "_zoneid": "42",
+            "_text": "(GMT+06:00) Almaty, Novosibirsk"
+        },
+        {
+            "_zoneid": "12",
+            "_text": "(GMT+06:00) Astana, Dhaka"
+        },
+        {
+            "_zoneid": "41",
+            "_text": "(GMT+06:30) Rangoon"
+        },
+        {
+            "_zoneid": "59",
+            "_text": "(GMT+07:00) Bangkok, Hanoi, Jakarta"
+        },
+        {
+            "_zoneid": "50",
+            "_text": "(GMT+07:00) Krasnoyarsk"
+        },
+        {
+            "_zoneid": "17",
+            "_text": "(GMT+08:00) Beijing, Chongqing, Hong Kong, Urumqi"
+        },
+        {
+            "_zoneid": "46",
+            "_text": "(GMT+08:00) Irkutsk, Ulaan Bataar"
+        },
+        {
+            "_zoneid": "60",
+            "_text": "(GMT+08:00) Kuala Lumpur, Singapore"
+        },
+        {
+            "_zoneid": "70",
+            "_text": "(GMT+08:00) Perth"
+        },
+        {
+            "_zoneid": "63",
+            "_text": "(GMT+08:00) Taipei"
+        },
+        {
+            "_zoneid": "65",
+            "_text": "(GMT+09:00) Osaka, Sapporo, Tokyo"
+        },
+        {
+            "_zoneid": "77",
+            "_text": "(GMT+09:00) Seoul"
+        },
+        {
+            "_zoneid": "75",
+            "_text": "(GMT+09:00) Yakutsk"
+        },
+        {
+            "_zoneid": "10",
+            "_text": "(GMT+09:30) Adelaide"
+        },
+        {
+            "_zoneid": "4",
+            "_text": "(GMT+09:30) Darwin"
+        },
+        {
+            "_zoneid": "20",
+            "_text": "(GMT+10:00) Brisbane"
+        },
+        {
+            "_zoneid": "5",
+            "_text": "(GMT+10:00) Canberra, Melbourne, Sydney"
+        },
+        {
+            "_zoneid": "74",
+            "_text": "(GMT+10:00) Guam, Port Moresby"
+        },
+        {
+            "_zoneid": "64",
+            "_text": "(GMT+10:00) Hobart"
+        },
+        {
+            "_zoneid": "69",
+            "_text": "(GMT+10:00) Vladivostok"
+        },
+        {
+            "_zoneid": "15",
+            "_text": "(GMT+11:00) Magadan, Solomon Is., New Caledonia"
+        },
+        {
+            "_zoneid": "44",
+            "_text": "(GMT+12:00) Auckland, Wellington"
+        },
+        {
+            "_zoneid": "26",
+            "_text": "(GMT+12:00) Fiji, Kamchatka, Marshall Is."
+        },
+        {
+            "_zoneid": "6",
+            "_text": "(GMT-01:00) Azores"
+        },
+        {
+            "_zoneid": "8",
+            "_text": "(GMT-01:00) Cape Verde Is."
+        },
+        {
+            "_zoneid": "39",
+            "_text": "(GMT-02:00) Mid-Atlantic"
+        },
+        {
+            "_zoneid": "22",
+            "_text": "(GMT-03:00) Brasilia"
+        },
+        {
+            "_zoneid": "94",
+            "_text": "(GMT-03:00) Buenos Aires"
+        },
+        {
+            "_zoneid": "55",
+            "_text": "(GMT-03:00) Buenos Aires, Georgetown"
+        },
+        {
+            "_zoneid": "29",
+            "_text": "(GMT-03:00) Greenland"
+        },
+        {
+            "_zoneid": "95",
+            "_text": "(GMT-03:00) Montevideo"
+        },
+        {
+            "_zoneid": "45",
+            "_text": "(GMT-03:30) Newfoundland"
+        },
+        {
+            "_zoneid": "3",
+            "_text": "(GMT-04:00) Atlantic Time (Canada)"
+        },
+        {
+            "_zoneid": "57",
+            "_text": "(GMT-04:00) Georgetown, La Paz, San Juan"
+        },
+        {
+            "_zoneid": "96",
+            "_text": "(GMT-04:00) Manaus"
+        },
+        {
+            "_zoneid": "51",
+            "_text": "(GMT-04:00) Santiago"
+        },
+        {
+            "_zoneid": "76",
+            "_text": "(GMT-04:30) Caracas"
+        },
+        {
+            "_zoneid": "56",
+            "_text": "(GMT-05:00) Bogota, Lima, Quito"
+        },
+        {
+            "_zoneid": "23",
+            "_text": "(GMT-05:00) Eastern Time (US & Canada)"
+        },
+        {
+            "_zoneid": "67",
+            "_text": "(GMT-05:00) Indiana (East)"
+        },
+        {
+            "_zoneid": "11",
+            "_text": "(GMT-06:00) Central America"
+        },
+        {
+            "_zoneid": "16",
+            "_text": "(GMT-06:00) Central Time (US & Canada)"
+        },
+        {
+            "_zoneid": "37",
+            "_text": "(GMT-06:00) Guadalajara, Mexico City, Monterrey"
+        },
+        {
+            "_zoneid": "7",
+            "_text": "(GMT-06:00) Saskatchewan"
+        },
+        {
+            "_zoneid": "68",
+            "_text": "(GMT-07:00) Arizona"
+        },
+        {
+            "_zoneid": "38",
+            "_text": "(GMT-07:00) Chihuahua, La Paz, Mazatlan"
+        },
+        {
+            "_zoneid": "40",
+            "_text": "(GMT-07:00) Mountain Time (US & Canada)"
+        },
+        {
+            "_zoneid": "52",
+            "_text": "(GMT-08:00) Pacific Time (US & Canada)"
+        },
+        {
+            "_zoneid": "104",
+            "_text": "(GMT-08:00) Tijuana, Baja California"
+        },
+        {
+            "_zoneid": "48",
+            "_text": "(GMT-09:00) Alaska"
+        },
+        {
+            "_zoneid": "32",
+            "_text": "(GMT-10:00) Hawaii"
+        },
+        {
+            "_zoneid": "58",
+            "_text": "(GMT-11:00) Midway Island, Samoa"
+        },
+        {
+            "_zoneid": "18",
+            "_text": "(GMT-12:00) International Date Line West"
+        },
+        {
+            "_zoneid": "105",
+            "_text": "(GMT-4:00) Eastern Daylight Time (US & Canada)"
+        },
+        {
+            "_zoneid": "13",
+            "_text": "GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague"
+        }
+    ]
+}

@@ -1,0 +1,117 @@
+PODS:
+  - Alamofire (4.9.1)
+  - AppsFlyerFramework (5.4.0)
+  - AZSClient (0.2.6)
+  - BSGridCollectionViewLayout (1.2.5)
+  - BSImagePicker (2.10.3):
+    - BSGridCollectionViewLayout (= 1.2.5)
+    - BSImageView (= 1.0.3)
+  - BSImageView (1.0.3)
+  - CountryPickerView (3.0.7)
+  - FBSDKCoreKit (7.0.0):
+    - FBSDKCoreKit/Basics (= 7.0.0)
+    - FBSDKCoreKit/Core (= 7.0.0)
+  - FBSDKCoreKit/Basics (7.0.0)
+  - FBSDKCoreKit/Core (7.0.0):
+    - FBSDKCoreKit/Basics
+  - FBSDKLoginKit (7.0.0):
+    - FBSDKLoginKit/Login (= 7.0.0)
+  - FBSDKLoginKit/Login (7.0.0):
+    - FBSDKCoreKit (~> 7.0.0)
+  - FBSDKShareKit (7.0.0):
+    - FBSDKShareKit/Share (= 7.0.0)
+  - FBSDKShareKit/Share (7.0.0):
+    - FBSDKCoreKit (~> 7.0.0)
+  - IQKeyboardManagerSwift (6.5.5)
+  - Mantis (0.51)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - PDFReader (2.5.1)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
+  - Stripe (19.3.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftMessages (7.0.1):
+    - SwiftMessages/App (= 7.0.1)
+  - SwiftMessages/App (7.0.1)
+  - SwiftyDraw (2.2)
+  - SwiftyJSON (5.0.0)
+  - TTTAttributedLabel (2.0.0)
+  - WindowsAzureMessaging (1.0.2)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.4)
+  - AppsFlyerFramework
+  - AZSClient
+  - BSImagePicker (~> 2.4)
+  - CountryPickerView
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
+  - IQKeyboardManagerSwift
+  - Mantis (~> 0.43)
+  - NVActivityIndicatorView
+  - PDFReader
+  - SDWebImage (~> 4.4.7)
+  - Stripe
+  - SVProgressHUD (~> 2.2.5)
+  - SwiftMessages
+  - SwiftyDraw
+  - SwiftyJSON
+  - TTTAttributedLabel
+  - WindowsAzureMessaging
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - AppsFlyerFramework
+    - AZSClient
+    - BSGridCollectionViewLayout
+    - BSImagePicker
+    - BSImageView
+    - CountryPickerView
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - FBSDKShareKit
+    - IQKeyboardManagerSwift
+    - Mantis
+    - NVActivityIndicatorView
+    - PDFReader
+    - SDWebImage
+    - Stripe
+    - SVProgressHUD
+    - SwiftMessages
+    - SwiftyDraw
+    - SwiftyJSON
+    - TTTAttributedLabel
+    - WindowsAzureMessaging
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AppsFlyerFramework: 0253602f146ec07652543fe6f143d27086a695c3
+  AZSClient: efd576cabf56f97e38cb1b614739f4b0c1906392
+  BSGridCollectionViewLayout: 333dcb457a5a3bdd9212607ab5756553dcfe06cb
+  BSImagePicker: 07404254f2fcdaf5a2eb403c0f8c337267ce8738
+  BSImageView: a149459433a2687157d034c78e059d30ac7f2544
+  CountryPickerView: a28b48d2fc89827bff18c4bd72ab8a7ae5c30953
+  FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
+  FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
+  FBSDKShareKit: 7ec93bf49516a91513d64863f54121155bbd7f78
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  Mantis: 4ef22d751ff63115fed70be8846d13c22786ccd0
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  PDFReader: 2c4a845d0560f33221cf911516e3b700967680f6
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
+  Stripe: dd5bfdd5f1daed4f9ddbfb47e9449ec302f9f708
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftMessages: b577dc7043be8b299857ab35bb663dbff6483bd0
+  SwiftyDraw: 1ba2d35a0c19c901babca2171849a28860acc0a2
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  TTTAttributedLabel: 8cffe8e127e4e82ff3af1e5386d4cd0ad000b656
+  WindowsAzureMessaging: 3ec1c2ca507508e9595c34f6cf977e0c447fdd87
+
+PODFILE CHECKSUM: 899f857893d39f8830a7615a4f4d99c90e8158f7
+
+COCOAPODS: 1.9.1

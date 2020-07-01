@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController" customModule="ScribblePOC" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PenSize" customModule="ScribblePOC" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="477" height="252"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="Xeb-bU-sC2">
+                    <rect key="frame" x="18" y="111" width="441" height="31"/>
+                    <connections>
+                        <action selector="changeSizeAction:" destination="-1" eventType="valueChanged" id="5pr-CL-dAK"/>
+                    </connections>
+                </slider>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8bo-fn-YSd">
+                    <rect key="frame" x="427" y="10" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="FjX-fr-zQr"/>
+                        <constraint firstAttribute="height" constant="40" id="twU-dE-kns"/>
+                    </constraints>
+                    <state key="normal" image="Asset 66"/>
+                    <connections>
+                        <action selector="removePencilAction:" destination="-1" eventType="touchUpInside" id="3FT-o0-Xa1"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgr-Us-0hR">
+                    <rect key="frame" x="232" y="186.5" width="13.5" height="20.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Xeb-bU-sC2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Kt-Ip-jCl"/>
+                <constraint firstItem="8bo-fn-YSd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="9UJ-GF-JZu"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Xeb-bU-sC2" secondAttribute="trailing" constant="20" id="Apv-dn-5GZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Fgr-Us-0hR" secondAttribute="bottom" constant="11" id="GMp-uY-dII"/>
+                <constraint firstAttribute="trailing" secondItem="8bo-fn-YSd" secondAttribute="trailing" constant="10" id="ma5-v4-StQ"/>
+                <constraint firstItem="Xeb-bU-sC2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="t4n-ZE-xnk"/>
+                <constraint firstItem="Fgr-Us-0hR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="v5X-Hz-gnk"/>
+                <constraint firstItem="Xeb-bU-sC2" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="xEQ-Ff-3qs"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="sizeLbl" destination="Fgr-Us-0hR" id="cfd-7A-jKI"/>
+                <outlet property="slider" destination="Xeb-bU-sC2" id="wgU-iH-jv1"/>
+            </connections>
+            <point key="canvasLocation" x="50.000000000000007" y="-221.65178571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Asset 66" width="12.5" height="12.5"/>
+    </resources>
+</document>
