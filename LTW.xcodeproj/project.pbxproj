@@ -190,6 +190,10 @@
 		E59AB80F226FB7CC004CAA30 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59AB80E226FB7CC004CAA30 /* NotificationVC.swift */; };
 		E59AB813226FB826004CAA30 /* MyTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59AB812226FB826004CAA30 /* MyTestVC.swift */; };
 		E59B5C3222AE6BEE00DFFA10 /* AddtoFollowCategoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59B5C3122AE6BEE00DFFA10 /* AddtoFollowCategoryVC.swift */; };
+		E5A4560F24AC7C820026B0F9 /* TasksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A4560E24AC7C820026B0F9 /* TasksVC.swift */; };
+		E5A4561124AC7D5E0026B0F9 /* TasksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A4561024AC7D5E0026B0F9 /* TasksCell.swift */; };
+		E5A4561324AC84120026B0F9 /* NotificationClassesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A4561224AC84120026B0F9 /* NotificationClassesVC.swift */; };
+		E5A4561524AC847B0026B0F9 /* NotificationClassesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A4561424AC847B0026B0F9 /* NotificationClassesCell.swift */; };
 		E5A7450A23A8051700F7127B /* AnswerThatYouProvidedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7450923A8051700F7127B /* AnswerThatYouProvidedVC.swift */; };
 		E5A7450C23A8053C00F7127B /* AnswerThatYouProvidedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7450B23A8053C00F7127B /* AnswerThatYouProvidedCell.swift */; };
 		E5A7A20423BB49800070BC9F /* EditContentAnswerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7A20323BB49800070BC9F /* EditContentAnswerVC.swift */; };
@@ -495,6 +499,10 @@
 		E59AB80E226FB7CC004CAA30 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		E59AB812226FB826004CAA30 /* MyTestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTestVC.swift; sourceTree = "<group>"; };
 		E59B5C3122AE6BEE00DFFA10 /* AddtoFollowCategoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddtoFollowCategoryVC.swift; sourceTree = "<group>"; };
+		E5A4560E24AC7C820026B0F9 /* TasksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksVC.swift; sourceTree = "<group>"; };
+		E5A4561024AC7D5E0026B0F9 /* TasksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksCell.swift; sourceTree = "<group>"; };
+		E5A4561224AC84120026B0F9 /* NotificationClassesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationClassesVC.swift; sourceTree = "<group>"; };
+		E5A4561424AC847B0026B0F9 /* NotificationClassesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationClassesCell.swift; sourceTree = "<group>"; };
 		E5A7450923A8051700F7127B /* AnswerThatYouProvidedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerThatYouProvidedVC.swift; sourceTree = "<group>"; };
 		E5A7450B23A8053C00F7127B /* AnswerThatYouProvidedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerThatYouProvidedCell.swift; sourceTree = "<group>"; };
 		E5A7A20323BB49800070BC9F /* EditContentAnswerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContentAnswerVC.swift; sourceTree = "<group>"; };
@@ -995,6 +1003,10 @@
 				1862F65F24758C030000BC34 /* LandingPageVC.swift */,
 				186C58722476A53E00C8AF90 /* LandingPageNavigaionBarNC.swift */,
 				186C58802476D0FB00C8AF90 /* ClassesAttended.swift */,
+				E5A4560E24AC7C820026B0F9 /* TasksVC.swift */,
+				E5A4561024AC7D5E0026B0F9 /* TasksCell.swift */,
+				E5A4561224AC84120026B0F9 /* NotificationClassesVC.swift */,
+				E5A4561424AC847B0026B0F9 /* NotificationClassesCell.swift */,
 				186C58812476D0FB00C8AF90 /* ClassesAttended.xib */,
 			);
 			path = LTW;
@@ -1363,6 +1375,7 @@
 				E576B93C233CE36E00F4ABF9 /* GalleryVC.swift in Sources */,
 				E510A76124AAFD3C0056E55A /* DrawsanaUtilities.swift in Sources */,
 				E5F7E8112345F3E900869AB7 /* SlideInTransition.swift in Sources */,
+				E5A4561124AC7D5E0026B0F9 /* TasksCell.swift in Sources */,
 				E56E22CB240684E700C814A1 /* ClassReviewAndRatingTableViewCell.swift in Sources */,
 				E52FE76623C5B24100DAEAA4 /* ImageEditForScriblingANdCropVC.swift in Sources */,
 				E510A75224AAFD3C0056E55A /* LineShape.swift in Sources */,
@@ -1371,6 +1384,7 @@
 				E59590EB22E9726C00CBB097 /* DatePopupViewController.swift in Sources */,
 				E59590E922E96FFC00CBB097 /* TQIndexCell.swift in Sources */,
 				E57E76ED23FB11EB000D1CE0 /* TeachersListCell.swift in Sources */,
+				E5A4561324AC84120026B0F9 /* NotificationClassesVC.swift in Sources */,
 				E58D5A7423797EAB002AA4C0 /* SearchMailDisplayTableViewCell.swift in Sources */,
 				E515BA87238E7658005001F8 /* PencilSizePickerViewController.swift in Sources */,
 				E5176FB1225B57AA009EA999 /* SignUpVC.swift in Sources */,
@@ -1474,6 +1488,7 @@
 				E5E5164923E411B600050959 /* SelectionVC.swift in Sources */,
 				E5F7E80E2345E29C00869AB7 /* ReviewTestSubmitCell.swift in Sources */,
 				E5F7A88E24531C93006E477E /* AvailableGroupSignUpTableViewCell.swift in Sources */,
+				E5A4560F24AC7C820026B0F9 /* TasksVC.swift in Sources */,
 				E5A8680023D97B9E0072015D /* WeekView.swift in Sources */,
 				E56E22D12406850B00C814A1 /* TutorRatingAndReviewTableViewCell.swift in Sources */,
 				E5FE53E023F68AAA00B2D0A3 /* ClassAttendeesCell.swift in Sources */,
@@ -1498,6 +1513,7 @@
 				E5BDC22E23854C3900D587E9 /* ReviewAnswerVC.swift in Sources */,
 				E576B941233CE36E00F4ABF9 /* ImageSwipeVC.swift in Sources */,
 				E510A75724AAFD3C0056E55A /* StarShape.swift in Sources */,
+				E5A4561524AC847B0026B0F9 /* NotificationClassesCell.swift in Sources */,
 				E57E76EF23FB1254000D1CE0 /* SearchTeacherVC.swift in Sources */,
 				E59590E722E96FF200CBB097 /* AddTestQuestionVC.swift in Sources */,
 				E5149EA02318FD03005FA0E6 /* NotificationCell.swift in Sources */,

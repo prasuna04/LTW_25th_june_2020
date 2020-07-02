@@ -17,6 +17,10 @@ public enum MyError: Error {
 
 //@available(iOS 13.0, *) /*  Added By Ranjeet on 27th March 2020 */
 class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate , UITableViewDelegate ,UITableViewDataSource {
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var cellDate = "\(calculatedDate)-\(currentMonthIndex)-\(currentYear)".split(separator: "-")
         for i in 0..<cellDate.count{
@@ -44,6 +48,16 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             subNotification.layer.shadowColor = UIColor.black.cgColor
             subNotification.layer.shadowOpacity = 1
             subNotification.layer.cornerRadius = subNotification.frame.height/2
+        }
+    }
+    @IBOutlet weak var tasksView : UIView!{
+        didSet{
+            tasksView.isHidden = true
+        }
+    }
+    @IBOutlet weak var classesView : UIView! {
+        didSet{
+            classesView.isHidden = true
         }
     }
     
@@ -495,6 +509,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     }
   
     override func viewWillAppear(_ animated: Bool) {
+        checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
         dict.removeAll()
         var endPoint = String()
         let p : Int = Int(personTypeForCalendar!)!
@@ -508,6 +523,43 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     }
     func createNewEvent(){
         
+    }
+    func checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant : String) {
+        let status = EKEventStore.authorizationStatus(for: EKEntityType.event)
+        
+        switch (status) {
+        case EKAuthorizationStatus.notDetermined:
+            // This happens on first-run
+//            requestAccessToCalendar()
+            moveToSettings(enterhereWhichSettingControlYouWant: enterhereWhichSettingControlYouWant)
+            print("not determind")
+        case EKAuthorizationStatus.authorized:
+            // Things are in line with being able to show the calendars in the table view
+//            loadCalendars()
+//            refreshTableView()
+            print("authorized")
+        case EKAuthorizationStatus.restricted, EKAuthorizationStatus.denied:
+            // We need to help them give us permission
+//            needPermissionView.fadeIn()
+            moveToSettings(enterhereWhichSettingControlYouWant: enterhereWhichSettingControlYouWant)
+//            checkCalendarAuthorizationStatus()
+            print("restricted")
+        }
+    }
+    func moveToSettings(enterhereWhichSettingControlYouWant : String ){
+        let alertController = UIAlertController(title: "Need \(enterhereWhichSettingControlYouWant) Permission.", message: "Please go to Settings and turn on the \(enterhereWhichSettingControlYouWant) permissions", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+             }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     func UTCToLocal(date:String) -> Date? {
         let dateFormatter = DateFormatter()
