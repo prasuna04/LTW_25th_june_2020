@@ -202,6 +202,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     let date = formatter.string(from: i.startDate!)
                     formatter.dateFormat = "HH:mm"
                     let LocalObj = LocalEvents(title: i.title, startTime: self.convertHourFormate(for: formatter.string(from: i.startDate)), endTime: self.convertHourFormate(for: formatter.string(from: i.endDate)), note: "", key: date)
+                    taskDict[date] = LocalObj 
                     if self.dict.keys.contains(date){
                         if !self.isEventPresent(self.dict[date]!, localEvent: LocalObj){
                              self.dict[date]!.append(LocalObj)
@@ -278,6 +279,8 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     var actionName = ""
     var userID : String = "e15823cd-b931-46d6-b9ea-539d87196f64"
     var dict = Dictionary<String,[calenderEvents]>()
+    var classDict =  Dictionary<String,[LTWEvents]>()
+    var taskDict = Dictionary<String,[LocalEvents]>()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numOfDaysInMonth[currentMonthIndex-1] + firstWeekDayOfMonth - 1
@@ -560,6 +563,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     print("Deepak",endTime)
                    // let date = self.serverToLocal(date: items["UTC_ClassDatetime"] as! String)//DateHelper.localToUTC(date: items["date"] as! String, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy")
                     let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String)
+                    classDict[date] = calederEventObj
                     if self.dict.keys.contains(date){
                         //let count = self.dict["date"]?.count
                         self.dict[date]!.append(calederEventObj)
