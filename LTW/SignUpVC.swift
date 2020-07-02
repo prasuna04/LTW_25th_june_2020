@@ -330,6 +330,9 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate,UINavigationCo
     //        vc.modalTransitionStyle = .crossDissolve
     //        self.present(vc, animated: true, completion: nil)
     //    }
+    func cameraAuthorizationCheck(){
+        
+    }
     // Profile Image related
     @objc func tappedMe(){
         let alert = UIAlertController(title: "Select Photo", message: "", preferredStyle: .actionSheet)
@@ -349,8 +352,22 @@ class SignUpVC: UIViewController, UIImagePickerControllerDelegate,UINavigationCo
                 } else {
                     // Fallback on earlier versions
                 }
+                switch AVCaptureDevice.authorizationStatus(for: .video) {
+                case .authorized: // The user has previously granted access to the camera.
+                    self.present(picker,animated: true,completion: nil)
+                    
+                case .notDetermined: // The user has not yet been asked for camera access.
+                    AVCaptureDevice.requestAccess(for: .video) { granted in
+                        if granted {
+                            self.present(picker,animated: true,completion: nil)
+                        }
+                    }
+                    
+                case .denied, .restricted: // The user has previously denied access.
+                    self.moveToSettings(enterhereWhichSettingControlYouWant: "Camera")
                 /*  Updated By Ranjeet on 27th March 2020 - ends here  */
-                self.present(picker,animated: true,completion: nil)
+                
+                }
             }else{
                 self.noCamera()
             }
@@ -1064,6 +1081,21 @@ extension SignUpVC : UITextFieldDelegate {
             return false
         }
         return false
+    }
+    func moveToSettings(enterhereWhichSettingControlYouWant : String ){
+        let alertController = UIAlertController(title: "Need \(enterhereWhichSettingControlYouWant) Permission.", message: "Please go to Settings and turn on the \(enterhereWhichSettingControlYouWant) permissions", preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in })
+             }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 /* Added By Ranjeet on 24th April 2020 - ends  here */
