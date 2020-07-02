@@ -101,7 +101,7 @@ class MenuViewController: UIViewController,NVActivityIndicatorViewable,MFMailCom
         mailComposeVC.setToRecipients(["support@learnteachworld.com"])
         let firstName = UserDefaults.standard.object(forKey: "fname") as! String
         let lastName = UserDefaults.standard.object(forKey: "lname") as! String
-        mailComposeVC.setSubject(NSLocalizedString("Feedback version 1.1 - from \(firstName) and \(lastName)", comment: ""))
+        mailComposeVC.setSubject(NSLocalizedString("Feedback version 1.2 - from \(firstName) \(lastName)", comment: ""))
         //19/12/18
         let body = "\n\n\n\n\n \(NSLocalizedString("Regards", comment: ""))" + "\n\(firstName)" + " \(lastName)" + "\n" + "\(UserDefaults.standard.object(forKey: "emailId") as! String)"
         mailComposeVC.setMessageBody(body, isHTML: false)

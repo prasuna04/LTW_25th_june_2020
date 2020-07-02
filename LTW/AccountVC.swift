@@ -190,6 +190,9 @@ class AccountVC: UIViewController,NVActivityIndicatorViewable {
             tutoringPointstrophyImage.isHidden = true
         }
     }
+    @IBOutlet weak var myPointsTitleLabelConstraint : NSLayoutConstraint!
+    @IBOutlet weak var myPointsTrophyImageConstraint : NSLayoutConstraint!
+    @IBOutlet weak var myPointsTrophyImage : UIImageView!
     
     
     var userID: String!
@@ -238,8 +241,12 @@ class AccountVC: UIViewController,NVActivityIndicatorViewable {
             tutoringPointsHeadingLabel.isHidden = true
             tutoringPointstrophyImage.isHidden = true
             pointsPurchasedCustomView.isHidden = false
+            myPointsTitleLabelConstraint.constant = self.view.frame.width/2 - myPointsTitleLbl.frame.width/2
+            myPointsTrophyImageConstraint.constant = self.view.frame.width/2 - myPointsTitleLbl.frame.width/2
         } 
         else {
+            myPointsTitleLabelConstraint.constant = 20
+            myPointsTrophyImageConstraint.constant = 20
             pointsPurchasedCustomView.isHidden = true
             cardView1HeightConstraint.constant = 575
             tutoringPointsLabel.isHidden = false
