@@ -21763,6 +21763,9 @@
                                                 <state key="normal" title=" Calender" image="Icon awesome-calendar-alt">
                                                     <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onClickOfCalendar:" destination="dK3-zq-RCD" eventType="touchUpInside" id="2RQ-xm-fcN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hke-bC-ePh">
                                                 <rect key="frame" x="131.33333333333331" y="0.0" width="131.33333333333331" height="40"/>
@@ -21770,6 +21773,9 @@
                                                 <state key="normal" title="Tasks">
                                                     <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onClickOfTasks:" destination="dK3-zq-RCD" eventType="touchUpInside" id="vW9-1E-1h8"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6p-Ib-xUG">
                                                 <rect key="frame" x="262.66666666666669" y="0.0" width="131.33333333333331" height="40"/>
@@ -21777,6 +21783,9 @@
                                                 <state key="normal" title="Classes">
                                                     <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="onClickOfNotificationClasses:" destination="dK3-zq-RCD" eventType="touchUpInside" id="lXU-4M-rwu"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -21831,11 +21840,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="calendarButton" destination="49A-d5-Bwj" id="6ti-O3-Sps"/>
                         <outlet property="calender" destination="AKN-1L-AdG" id="ElK-fP-CWU"/>
+                        <outlet property="classesButton" destination="k6p-Ib-xUG" id="PNx-qs-VBL"/>
                         <outlet property="classesView" destination="m8H-Ul-BeU" id="otd-4c-2z5"/>
                         <outlet property="monthView" destination="DTA-RA-dHC" id="N74-zb-70M"/>
                         <outlet property="subNotification" destination="x69-Is-I4a" id="kik-kg-oEu"/>
                         <outlet property="tableView" destination="1cJ-IG-QG1" id="m1Q-31-cTK"/>
+                        <outlet property="tasksButton" destination="hke-bC-ePh" id="NVl-u9-J7r"/>
                         <outlet property="tasksView" destination="Ggb-fb-AYZ" id="zSj-LG-JfI"/>
                         <outlet property="weekView" destination="Bpb-Sk-YlO" id="ULC-K2-iIv"/>
                     </connections>
@@ -24041,7 +24053,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="122" id="huc-ZF-o4n" customClass="NotificationCell" customModule="LearnTeachWorld" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="122" id="huc-ZF-o4n" customClass="EventCell" customModule="LearnTeachWorld" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="122"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="huc-ZF-o4n" id="cXd-iO-K5b">

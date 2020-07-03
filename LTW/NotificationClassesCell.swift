@@ -9,6 +9,14 @@
 import UIKit
 
 class NotificationClassesCell: UITableViewCell {
+    
+    @IBOutlet weak var tasksTableView : UITableView!
+    @IBOutlet weak var classTitle : UILabel!
+    @IBOutlet weak var grades : UILabel!
+    @IBOutlet weak var timings : UILabel!
+    @IBOutlet weak var joinButton : UIButton!
+    @IBOutlet weak var whiteboardButton : UIButton!
+    @IBOutlet weak var subscribeUnsubscribeButton : UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,5 +28,6 @@ class NotificationClassesCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 
 }

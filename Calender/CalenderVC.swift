@@ -60,9 +60,22 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             classesView.isHidden = true
         }
     }
+    @IBOutlet weak var tasksButton : UIButton!
+    @IBOutlet weak var classesButton : UIButton!
+    @IBOutlet weak var calendarButton : UIButton!
     
-    
-    
+    @IBAction func onClickOfCalendar(_ sender: UIButton) {
+        tasksView.isHidden = true
+        classesView.isHidden = true
+    }
+    @IBAction func onClickOfTasks(_ sender : UIButton){
+        tasksView.isHidden = false
+        classesView.isHidden = true
+    }
+    @IBAction func onClickOfNotificationClasses(_ sender : UIButton) {
+        tasksView.isHidden = true
+        classesView.isHidden = false
+    }
    @IBAction func onClickOfJoin(_ sender: UIButton) {
           let p : Int = Int(personTypeForCalendar!)!
         if p == 1 {
