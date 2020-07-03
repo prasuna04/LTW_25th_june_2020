@@ -34,9 +34,10 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell
-        
-        return cell!
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationClassCell", for: indexPath) as! NotificationClassCell
+        return cell
+
     }
 
     

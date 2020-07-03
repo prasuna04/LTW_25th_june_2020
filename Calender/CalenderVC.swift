@@ -16,6 +16,7 @@ public enum MyError: Error {
 //let subjects = UserDefaults.standard.array(forKey: "subjectArray") as! [String]
 
 //@available(iOS 13.0, *) /*  Added By Ranjeet on 27th March 2020 */
+
 class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate , UITableViewDelegate ,UITableViewDataSource {
     
     
@@ -306,8 +307,8 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     var actionName = ""
     var userID : String = "e15823cd-b931-46d6-b9ea-539d87196f64"
     var dict = Dictionary<String,[calenderEvents]>()
-    var classDict =  Dictionary<String,LTWEvents>()
-    var taskDict = Dictionary<String,LocalEvents>()
+    static var classDict =  Dictionary<String,LTWEvents>()
+    static var taskDict = Dictionary<String,LocalEvents>()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numOfDaysInMonth[currentMonthIndex-1] + firstWeekDayOfMonth - 1

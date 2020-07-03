@@ -10,10 +10,11 @@ import UIKit
 
 class NotificationClassesCell: UITableViewCell {
     
-    @IBOutlet weak var tasksTableView : UITableView!
+
     @IBOutlet weak var classTitle : UILabel!
     @IBOutlet weak var grades : UILabel!
     @IBOutlet weak var timings : UILabel!
+    @IBOutlet weak var subject : UILabel!
     @IBOutlet weak var joinButton : UIButton!
     @IBOutlet weak var whiteboardButton : UIButton!
     @IBOutlet weak var subscribeUnsubscribeButton : UIButton!
