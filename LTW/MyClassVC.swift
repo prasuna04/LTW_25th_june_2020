@@ -2279,21 +2279,25 @@ extension MyClassVC {
         return temp
     }
     func getCurrentTimeZoneName() -> String {
-        
-        //1
-        let item = TimeZone.current.identifier
-        var timeZone : String = String() //For
-        timeZone = item ?? ""
-        
-        let abbreviationDictionary = TimeZone.abbreviationDictionary
-        print("\(abbreviationDictionary)")
-        print(timeZone)
-//        let key = (abbreviationDictionary.filter { $0.value == timeZone }).first?.key
-//        print("Keyvalue : \(key!)")
-        
-        //2
-        //  let item = TimeZone.current.abbreviation()//o/p GMT+5:30
-        
-        return timeZone ?? ""
-        
-    }}
+
+    // //1
+    // let item = TimeZone.current.identifier
+    // timeZone = item ?? ""
+    //
+    // let abbreviationDictionary = TimeZone.abbreviationDictionary
+    // print("\(abbreviationDictionary)")
+    // print(timeZone)
+    // let key = (abbreviationDictionary.filter { $0.value == timeZone }).first?.key
+    // print("Keyvalue : \(key!)")
+
+    // return key ?? ""
+
+    // return "\(timezone1)" ?? ""
+
+    let item = TimeZone.current.localizedName(for: .standard, locale: .current) ?? ""
+
+
+    return item
+    }
+    
+}
