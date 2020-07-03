@@ -146,6 +146,7 @@ class MyClassVC: UIViewController,NVActivityIndicatorViewable {
     var dict: JSON!
     //    var chatDialog: QBChatDialog?
     
+    var currentTimeZoneName = String()
     
     
     override func viewDidLoad() {
@@ -1198,7 +1199,9 @@ extension MyClassVC: UITableViewDataSource, GroupCell { //GroupCell Protocol Add
             
             let startTime: String = amAppend(str: String(startTimeParts[1]))
             let endTime:String = amAppend(str: String(endTimeParts[1]))
-            cell.timeLabel.text = "\(startTime) - \(endTime)"
+            //cell.timeLabel.text = "\(startTime) - \(endTime)"
+            currentTimeZoneName = getCurrentTimeZoneName()
+            cell.timeLabel.text = "\(startTime) - \(endTime) (\(currentTimeZoneName))"
             
             
             
@@ -1527,7 +1530,8 @@ extension MyClassVC: UITableViewDataSource, GroupCell { //GroupCell Protocol Add
             let startTime: String = amAppend(str: String(startTimeParts[1]))
             let endTime:String = amAppend(str: String(endTimeParts[1]))
             
-            cell.timeLabel.text = "\(startTime) - \(endTime)"
+            currentTimeZoneName = getCurrentTimeZoneName()
+            cell.timeLabel.text = "\(startTime) - \(endTime) (\(currentTimeZoneName))"
             /*Added by yasodha 29/4/2020 ends here */
             
             
@@ -2274,4 +2278,22 @@ extension MyClassVC {
         }
         return temp
     }
-}
+    func getCurrentTimeZoneName() -> String {
+        
+        //1
+        let item = TimeZone.current.identifier
+        var timeZone : String = String() //For
+        timeZone = item ?? ""
+        
+        let abbreviationDictionary = TimeZone.abbreviationDictionary
+        print("\(abbreviationDictionary)")
+        print(timeZone)
+//        let key = (abbreviationDictionary.filter { $0.value == timeZone }).first?.key
+//        print("Keyvalue : \(key!)")
+        
+        //2
+        //  let item = TimeZone.current.abbreviation()//o/p GMT+5:30
+        
+        return timeZone ?? ""
+        
+    }}
