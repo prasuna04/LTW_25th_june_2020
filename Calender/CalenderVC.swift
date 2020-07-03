@@ -524,6 +524,8 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
         dict.removeAll()
+        classDict.removeAll()
+        taskDict.removeAll()
         var endPoint = String()
         let p : Int = Int(personTypeForCalendar!)!
         if p  == 1 {
@@ -682,6 +684,8 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     
                 }
                 _self.dict.removeAll()
+                 _self.classDict.removeAll()
+                 _self.taskDict.removeAll()
                 var endPoint = String()
                 let p : Int = Int(_self.personTypeForCalendar!)!
                 if p  == 1 {

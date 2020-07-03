@@ -9,10 +9,16 @@
 import UIKit
 
 class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
+
+    var classDict =  Dictionary<String,LTWEvents>()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
+    	classDict = calenderVC().classDict
     }
     @IBAction func joinButton(_ sender : UIButton){
         
@@ -24,23 +30,16 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return classDict.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as? EventCell
+        
         return cell!
     }
 
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }
