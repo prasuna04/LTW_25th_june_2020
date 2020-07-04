@@ -18,7 +18,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-    	classDict = calenderVC().classDict
+        classDict = CalenderEventStruct.classDict
     }
     @IBAction func joinButton(_ sender : UIButton){
         
@@ -35,7 +35,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationClassCell", for: indexPath) as! NotificationClassCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationClassesCell", for: indexPath) as! NotificationClassesCell
         return cell
 
     }

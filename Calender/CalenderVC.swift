@@ -8,7 +8,10 @@ import Alamofire
 import EventKit
 
 
-
+struct CalenderEventStruct{
+    static var classDict : Dictionary<String, LTWEvents>!
+    static var tasksDict : Dictionary<String, LocalEvents>!
+}
 public enum MyError: Error {
     case Duplicate
     case Insufficient
@@ -230,7 +233,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     let date = formatter.string(from: i.startDate!)
                     formatter.dateFormat = "HH:mm"
                     let LocalObj = LocalEvents(title: i.title, startTime: self.convertHourFormate(for: formatter.string(from: i.startDate)), endTime: self.convertHourFormate(for: formatter.string(from: i.endDate)), note: "", key: date)
-                    self.taskDict[date] = LocalObj
+                    CalenderEventStruct.tasksDict[date] = LocalObj
                     if self.dict.keys.contains(date){
                         if !self.isEventPresent(self.dict[date]!, localEvent: LocalObj){
                              self.dict[date]!.append(LocalObj)
@@ -307,8 +310,8 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     var actionName = ""
     var userID : String = "e15823cd-b931-46d6-b9ea-539d87196f64"
     var dict = Dictionary<String,[calenderEvents]>()
-    static var classDict =  Dictionary<String,LTWEvents>()
-    static var taskDict = Dictionary<String,LocalEvents>()
+//    var classDict =  Dictionary<String,LTWEvents>()
+//    var taskDict = Dictionary<String,LocalEvents>()
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numOfDaysInMonth[currentMonthIndex-1] + firstWeekDayOfMonth - 1
@@ -525,8 +528,10 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
         dict.removeAll()
-        classDict.removeAll()
-        taskDict.removeAll()
+        CalenderEventStruct.tasksDict.removeAll()
+        CalenderEventStruct.classDict.removeAll()
+//        classDict.removeAll()
+//        taskDict.removeAll()
         var endPoint = String()
         let p : Int = Int(personTypeForCalendar!)!
         if p  == 1 {
@@ -627,11 +632,11 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
 //                    (DateHelper.formattDate(date: startDate!, toFormatt: "h:mm a")
                     let startTime: String = self.amAppend(str: String(startTimeParts[1])) // String(startTimeParts[1]) //
                     let endTime:String = self.amAppend(str: String(endTimeParts[1])) // String(endTimeParts[1]) //
-                    print("Deepak",startTime)
-                    print("Deepak",endTime)
+//                    print("Deepak",startTime)
+//                    print("Deepak",endTime)
                    // let date = self.serverToLocal(date: items["UTC_ClassDatetime"] as! String)//DateHelper.localToUTC(date: items["date"] as! String, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy")
                     let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String)
-                    self.classDict[date] = calederEventObj
+                    CalenderEventStruct.classDict[date] = calederEventObj
                     if self.dict.keys.contains(date){
                         //let count = self.dict["date"]?.count
                         self.dict[date]!.append(calederEventObj)
@@ -685,8 +690,10 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     
                 }
                 _self.dict.removeAll()
-                 _self.classDict.removeAll()
-                 _self.taskDict.removeAll()
+                CalenderEventStruct.tasksDict.removeAll()
+                CalenderEventStruct.classDict.removeAll()
+//                 _self.classDict.removeAll()
+//                 _self.taskDict.removeAll()
                 var endPoint = String()
                 let p : Int = Int(_self.personTypeForCalendar!)!
                 if p  == 1 {
