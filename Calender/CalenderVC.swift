@@ -9,7 +9,7 @@ import EventKit
 
 
 struct CalenderEventStruct{
-    static var classDict : Dictionary<String, LTWEvents>!
+    static var classDict : [LTWEvents]!
     static var tasksDict : Dictionary<String, LocalEvents>!
 }
 public enum MyError: Error {
@@ -636,7 +636,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
 //                    print("Deepak",endTime)
                    // let date = self.serverToLocal(date: items["UTC_ClassDatetime"] as! String)//DateHelper.localToUTC(date: items["date"] as! String, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy")
                     let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String)
-                    CalenderEventStruct.classDict[date] = calederEventObj
+                    CalenderEventStruct.classDict.append(calederEventObj)
                     if self.dict.keys.contains(date){
                         //let count = self.dict["date"]?.count
                         self.dict[date]!.append(calederEventObj)

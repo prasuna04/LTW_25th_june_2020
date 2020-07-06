@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-    var classDict =  Dictionary<String,LTWEvents>()
+    var classDict =  [LTWEvents]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +34,21 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        let i = classDict[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationClassesCell", for: indexPath) as! NotificationClassesCell
-        cell.classTitle.text = ""
+        cell.classTitle.text = i.tittle
+        cell.classDate.text = i.key
+        cell.grades.text = i.grade
+        cell.timings.text = "\(i.startDate) TO \(i.endDate)"
+        cell.subject.text = i.topic
+       // cell.tutorNameLabel.text = ""
+        // Attachment for tutor whiteboard image befor tutor name.
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
+        let attachmentString = NSAttributedString(attachment: attachment)
+        var myString = NSMutableAttributedString(string: "") // Veeresh, please add tutor name in this empty space.
+        myString.append(attachmentString)
+        cell.tutorNameLabel.attributedText = myString
         return cell
 
     }
