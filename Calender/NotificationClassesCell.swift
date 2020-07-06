@@ -10,7 +10,7 @@ import UIKit
 
 class NotificationClassesCell: UITableViewCell {
     
-
+    @IBOutlet weak var classDate : UILabel!
     @IBOutlet weak var classTitle : UILabel!
     @IBOutlet weak var grades : UILabel!
     @IBOutlet weak var timings : UILabel!
@@ -18,7 +18,8 @@ class NotificationClassesCell: UITableViewCell {
     @IBOutlet weak var joinButton : UIButton!
     @IBOutlet weak var whiteboardButton : UIButton!
     @IBOutlet weak var subscribeUnsubscribeButton : UIButton!
-
+    @IBOutlet weak var tutorNameLabel : UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
