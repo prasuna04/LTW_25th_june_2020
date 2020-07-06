@@ -1005,8 +1005,6 @@
 				186C58802476D0FB00C8AF90 /* ClassesAttended.swift */,
 				E5A4560E24AC7C820026B0F9 /* TasksVC.swift */,
 				E5A4561024AC7D5E0026B0F9 /* TasksCell.swift */,
-				E5A4561224AC84120026B0F9 /* NotificationClassesVC.swift */,
-				E5A4561424AC847B0026B0F9 /* NotificationClassesCell.swift */,
 				186C58812476D0FB00C8AF90 /* ClassesAttended.xib */,
 			);
 			path = LTW;
@@ -1068,6 +1066,8 @@
 		E5A867F523D97B9E0072015D /* Calender */ = {
 			isa = PBXGroup;
 			children = (
+				E5A4561224AC84120026B0F9 /* NotificationClassesVC.swift */,
+				E5A4561424AC847B0026B0F9 /* NotificationClassesCell.swift */,
 				E5A867F623D97B9E0072015D /* EventCell.swift */,
 				E5A867F723D97B9E0072015D /* curvedView.swift */,
 				E5A867F823D97B9E0072015D /* MonthViews.swift */,
