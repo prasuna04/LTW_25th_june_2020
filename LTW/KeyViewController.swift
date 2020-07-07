@@ -272,13 +272,14 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
     }
     func attachmentClicked(){
         let alertController = UIAlertController(title: "Add a Link", message: "", preferredStyle: .alert)
-            alertController.addTextField { (textField : UITextField!) -> Void in
-                textField.placeholder = "Enter the Link"
-            }
+            // alertController.addTextField { (textField : UITextField!) -> Void in
+            //     textField.placeholder = "Enter the Link"
+            // }
+            alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
+                 textField.placeholder = "Enter the Link"
+            })  
             let saveAction = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
                 let firstTextField = alertController.textFields![0] as UITextField
-                //let secondTextField = alertController.textFields![1] as UITextField
-              //  print("firstName \(firstTextField.text), secondName \(secondTextField.text)")
                 let attr = NSMutableAttributedString(string: firstTextField.text!)
                 attr.addAttribute(.link, value: URL(fileURLWithPath: firstTextField.text!) , range: NSRange(location: 0, length:firstTextField.text!.count ))
                 self.textView.textStorage.insert(attr, at: self.textView.selectedRange.location)

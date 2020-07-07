@@ -141,7 +141,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                           }
         
                self.title = "Call"
-               self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Call", style: .plain, target: nil, action: nil)
+               self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
               // self.navigationItem.rightBarButtonItem?.isEnabled = false
                
                
