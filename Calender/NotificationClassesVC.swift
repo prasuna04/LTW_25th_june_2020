@@ -11,14 +11,18 @@ import UIKit
 class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var classDict =  [LTWEvents]()
+    @IBOutlet weak var notificationClassesTableView : UITableView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
-        classDict = CalenderEventStruct.classDict
+        notificationClassesTableView.reloadData()
+        print(classDict)
     }
     @IBAction func joinButton(_ sender : UIButton){
         
@@ -31,6 +35,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return classDict.count
+//        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,7 +51,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
         let attachment = NSTextAttachment()
         attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
         let attachmentString = NSAttributedString(attachment: attachment)
-        var myString = NSMutableAttributedString(string: "") // Veeresh, please add tutor name in this empty space.
+        var myString = NSMutableAttributedString(string: " Deepak") // Veeresh, please add tutor name in this empty space.
         myString.append(attachmentString)
         cell.tutorNameLabel.attributedText = myString
         return cell

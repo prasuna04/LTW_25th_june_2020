@@ -9,8 +9,8 @@ import EventKit
 
 
 struct CalenderEventStruct{
-    static var classDict : [LTWEvents]!
-    static var tasksDict : Dictionary<String, LocalEvents>!
+    static var classDict = [LTWEvents]()
+    static var tasksDict = Dictionary<String, LocalEvents>()
 }
 public enum MyError: Error {
     case Duplicate
@@ -64,13 +64,19 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             classesView.isHidden = true
         }
     }
-    @IBOutlet weak var tasksButton : UIButton!
+    @IBOutlet weak var tasksButton : UIButton! {
+        didSet{
+            tasksButton.isUserInteractionEnabled = false
+        }
+    }
     @IBOutlet weak var classesButton : UIButton!
     @IBOutlet weak var calendarButton : UIButton!
     
     @IBAction func onClickOfCalendar(_ sender: UIButton) {
+        
         tasksView.isHidden = true
         classesView.isHidden = true
+        
     }
     @IBAction func onClickOfTasks(_ sender : UIButton){
         tasksView.isHidden = false
@@ -528,8 +534,9 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     override func viewWillAppear(_ animated: Bool) {
         checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
         dict.removeAll()
+        
         CalenderEventStruct.tasksDict.removeAll()
-        CalenderEventStruct.classDict.removeAll()
+//        CalenderEventStruct.classDict.removeAll()
 //        classDict.removeAll()
 //        taskDict.removeAll()
         var endPoint = String()
@@ -637,6 +644,9 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                    // let date = self.serverToLocal(date: items["UTC_ClassDatetime"] as! String)//DateHelper.localToUTC(date: items["date"] as! String, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy")
                     let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String)
                     CalenderEventStruct.classDict.append(calederEventObj)
+                    let notClassVC =  self.storyboard?.instantiateViewController(withIdentifier: "NotificationClassesVC") as? NotificationClassesVC
+                    notClassVC?.classDict = CalenderEventStruct.classDict
+                    print("DK",CalenderEventStruct.classDict)
                     if self.dict.keys.contains(date){
                         //let count = self.dict["date"]?.count
                         self.dict[date]!.append(calederEventObj)
