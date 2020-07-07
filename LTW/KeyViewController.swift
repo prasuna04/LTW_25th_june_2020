@@ -275,16 +275,17 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
             // alertController.addTextField { (textField : UITextField!) -> Void in
             //     textField.placeholder = "Enter the Link"
             // }
-            alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
+            alertController.addTextField { (textField) in
                  textField.placeholder = "Enter the Link"
-            })  
+            }
+       
             let saveAction = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
                 let firstTextField = alertController.textFields![0] as UITextField
                 let attr = NSMutableAttributedString(string: firstTextField.text!)
                 attr.addAttribute(.link, value: URL(fileURLWithPath: firstTextField.text!) , range: NSRange(location: 0, length:firstTextField.text!.count ))
                 self.textView.textStorage.insert(attr, at: self.textView.selectedRange.location)
                 let myAttribute = [ NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14) ]
-                           let myAttrString = NSAttributedString(string: "\n", attributes: myAttribute)
+                           let myAttrString = NSAttributedString(string: "  ", attributes: myAttribute)
                            var newPosition = self.textView.endOfDocument
                            self.textView.selectedTextRange = self.textView.textRange(from: newPosition, to: newPosition)
                            self.textView.textStorage.insert(myAttrString, at: self.textView.selectedRange.location)
@@ -292,14 +293,12 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
                            self.textView.selectedTextRange = self.textView.textRange(from: newPosition, to: newPosition)
             })
             let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action : UIAlertAction!) -> Void in })
-            alertController.addTextField { (textField : UITextField!) -> Void in
-                textField.placeholder = "Enter the link"
-            }
+            
         
             alertController.addAction(saveAction)
             alertController.addAction(cancelAction)
             
-            self.present(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: false, completion: nil)
     }
     func findImage(textStorage: NSTextStorage) {
         //this function is used to find number of images present in the textView storage and stored in a images array

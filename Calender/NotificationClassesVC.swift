@@ -14,7 +14,8 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var notificationClassesTableView : UITableView!
     var classDict : [LTWEvents]!
     let personType = UserDefaults.standard.string(forKey: "persontyp")
-    let loggedInUserID = UserDefaults.standard.string(forKey: "userID")
+    let userID = UserDefaults.standard.string(forKey: "userID")
+    var actionName : String!
     override func viewDidLoad() {
         super.viewDidLoad()
         notificationClassesTableView.delegate = self
@@ -25,67 +26,58 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
     }
     @IBAction func joinButton(_ sender : UIButton){
-         let p : Int = Int(personType!)!
+        let p : Int = Int(personType!)!
         if p == 1 {
-                    let endPoint = Endpoints.classStartedEndpoint + userID + "/" + "\(classDict[sender.tag].classId)"
-                   actionName = "StudentJoin"
-                    hitServer(params: [:], endPoint: endPoint ,action: actionName, httpMethod: .get)
-                    
-                    let hostURL = classDict[sender.tag].hostUrl
-                    if hostURL == ""{
-                    // showMessage(bodyText: "Not part of zoom meeting.. call.",theme:.warning,presentationStyle:.center,duration:.seconds(seconds: 0.2) )
-                    showMessage(bodyText: "Not part of zoom meeting.. call.",theme: .warning)
-                    return
-
-                    }else if let url = NSURL(string:classDict[sender.tag].hostUrl){
-                    UIApplication.shared.openURL(url as URL)
-
-
-                    }
+            let endPoint = Endpoints.classStartedEndpoint + userID! + "/" + "\(classDict[sender.tag].classId)"
+            actionName = "StudentJoin"
+            hitServer(params: [:], endPoint: endPoint ,action: actionName, httpMethod: .get)
+            let hostURL = classDict[sender.tag].hostUrl
+            if hostURL == ""{
+                // showMessage(bodyText: "Not part of zoom meeting.. call.",theme:.warning,presentationStyle:.center,duration:.seconds(seconds: 0.2) )
+                showMessage(bodyText: "Not part of zoom meeting.. call.",theme: .warning)
+                return
+            }else if let url = NSURL(string:classDict[sender.tag].hostUrl){
+                UIApplication.shared.openURL(url as URL)
+            }
         }
         else {
-            let endPoint = Endpoints.classStartedEndpoint + userID + "/" + "\(classDict[sender.tag].classId)"
+            let endPoint = Endpoints.classStartedEndpoint + userID! + "/" + "\(classDict[sender.tag].classId)"
             actionName = "TeacherJoin"
             hitServer(params: [:], endPoint: endPoint ,action: actionName, httpMethod: .get)
             let hostURL = classDict[sender.tag].hostUrl
             if hostURL == ""{
-            // showMessage(bodyText: "Not part of zoom meeting.. call.",theme:.warning,presentationStyle:.center,duration:.seconds(seconds: 0.2) )
-            showMessage(bodyText: "Not part of zoom meeting.. call.",theme: .warning)
-            return
-
+                // showMessage(bodyText: "Not part of zoom meeting.. call.",theme:.warning,presentationStyle:.center,duration:.seconds(seconds: 0.2) )
+                showMessage(bodyText: "Not part of zoom meeting.. call.",theme: .warning)
+                return
+                
             }else if let url = NSURL(string:classDict[sender.tag].hostUrl){
-            UIApplication.shared.openURL(url as URL)
-
+                UIApplication.shared.openURL(url as URL)
+                
             }
             print("hostURL: \(classDict[sender.tag].hostUrl)")
         }
     }
     @IBAction func whiteBoardButton(_ sender : UIButton){
-         guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
-                              return
-                          }
-        
-               self.title = "Call"
-               self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-              // self.navigationItem.rightBarButtonItem?.isEnabled = false
-               
-               
-               viewController.viewFinalImageButton.title = ""
-               self.navigationController?.pushViewController(viewController, animated: true)
+        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController else {
+            return
+        }
+        self.title = "Call"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        // self.navigationItem.rightBarButtonItem?.isEnabled = false
+        viewController.viewFinalImageButton.title = ""
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     @IBAction func unsubscribeButton(_ sender : UIButton) {
-
-         if NetworkReachabilityManager()?.isReachable ?? false {
-                    //Internet connected,Go ahead
-            
-            let endPoint = Endpoints.unsubscribeClassEndPoint + userID + "/"  + "\(classDict[sender.tag].classId)"
-                    actionName = "Classunsubscribe"
-                    hitServer(params: [:], endPoint: endPoint ,action: actionName, httpMethod: .get)
-                }else {
-                    //NO Internet connection, just return
-                    showMessage(bodyText: "No internet connection",theme: .warning)
-                }
-
+        if NetworkReachabilityManager()?.isReachable ?? false {
+            //Internet connected,Go ahead
+            let endPoint = Endpoints.unsubscribeClassEndPoint + userID! + "/" + "\(classDict[sender.tag].classId)"
+            actionName = "Classunsubscribe"
+            hitServer(params: [:], endPoint: endPoint ,action: actionName, httpMethod: .get)
+        }else {
+            //NO Internet connection, just return
+            showMessage(bodyText: "No internet connection",theme: .warning)
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,10 +92,11 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
             cell.subscribeUnsubscribeButton.isHidden = false
             cell.tutorNameLabel.isHidden = false
             // Attachment for tutor whiteboard image befor tutor name.
+            let teacherFirstName = (i.teacherName).split(separator: " ")
             let attachment = NSTextAttachment()
             attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
             let attachmentString = NSAttributedString(attachment: attachment)
-            var myString = NSMutableAttributedString(string: i.teacherName) // Veeresh, please add tutor name in this empty space.
+            let myString = NSMutableAttributedString(string: String(teacherFirstName[0]))
             myString.append(attachmentString)
             cell.tutorNameLabel.attributedText = myString
         }else{
@@ -123,9 +116,38 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
        // cell.tutorNameLabel.text = ""
        
         return cell
-
     }
     
+    //HitServer Function Goes Here.
+    func hitServer(params: [String:Any],endPoint: String, action: String,httpMethod: HTTPMethod) {
+        LTWClient.shared.hitService(withBodyData: params, toEndPoint: endPoint, using: httpMethod, dueToAction: action){[weak self] result in
+            guard let _self = self else {
+                return
+            }
+            switch result
+            {
+            case let .success(json,_):
+                let msg = json["message"].stringValue
+                if json["error"].intValue == 1 {
+                    showMessage(bodyText: msg,theme: .error)
+                }
+                else {
+                    /*Added by yasodha on 27/1/2020 - starts*/
+                    self!.actionName = action
+                    //after coming from the Zoom
+                    if self!.actionName == "startClass" || self!.actionName == "Joinclass"{
+                    }
+                    else if _self.actionName == "unsubscribe" {
+                        // showMessage(bodyText: msg,theme: .success) /*  Commented By Ranjeet on 19th March 2020 */
+                        showMessage(bodyText: "You have unsubscribed from this class",theme: .success)  /*  Updated By Ranjeet on 19th March 2020 */
+                    }
+                }
+            default : break
+            }
+            
+            
+        }
+    }
 
     
    

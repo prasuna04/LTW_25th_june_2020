@@ -26,7 +26,7 @@ class NotificationClassesCell: UITableViewCell {
             whiteboardButton.backgroundColor = .clear
             whiteboardButton.layer.cornerRadius = (whiteboardButton.bounds.height - 10) / 2
             whiteboardButton.layer.borderWidth = 1
-            whiteboardButton.layer.borderColor = UIColor.green.cgColor
+            whiteboardButton.layer.borderColor = UIColor.init(hex: "60A200").cgColor
             whiteboardButton.contentEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
         }
     }
