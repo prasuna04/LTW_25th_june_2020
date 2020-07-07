@@ -6,12 +6,6 @@
 import UIKit
 import Alamofire
 import EventKit
-
-
-struct CalenderEventStruct{
-    static var classDict = [LTWEvents]()
-    static var tasksDict = Dictionary<String, LocalEvents>()
-}
 public enum MyError: Error {
     case Duplicate
     case Insufficient
@@ -22,9 +16,42 @@ public enum MyError: Error {
 
 class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate , UITableViewDelegate ,UITableViewDataSource {
     
+    @IBOutlet weak var baseContainerView:UIView!
+    var classDict = [LTWEvents]()
     
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("running")
+        initializeView()
+        calender.translatesAutoresizingMaskIntoConstraints = false
+        monthView.translatesAutoresizingMaskIntoConstraints=false
+        weekView.translatesAutoresizingMaskIntoConstraints=false
+        monthView.delegate=self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        
+        /* remove unwanted cells - starts here */
+        self.tableView.tableFooterView = UIView()
+        /* remove unwanted cells - ends here */
+    }
+        override func viewWillAppear(_ animated: Bool) {
+            checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
+            dict.removeAll()
+    //        classDict.removeAll()
+    //        taskDict.removeAll()
+            var endPoint = String()
+            let p : Int = Int(personTypeForCalendar!)!
+            if p  == 1 {
+                endPoint = "\(Endpoints.subcribedClassEndPoint)\(userID)?searchText="
+            }
+            else {
+                endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
+            }
+            fetchAPI(with: endPoint)
+        }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var cellDate = "\(calculatedDate)-\(currentMonthIndex)-\(currentYear)".split(separator: "-")
         for i in 0..<cellDate.count{
@@ -54,38 +81,46 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             subNotification.layer.cornerRadius = subNotification.frame.height/2
         }
     }
-    @IBOutlet weak var tasksView : UIView!{
-        didSet{
-            tasksView.isHidden = true
-        }
-    }
-    @IBOutlet weak var classesView : UIView! {
-        didSet{
-            classesView.isHidden = true
-        }
-    }
     @IBOutlet weak var tasksButton : UIButton! {
         didSet{
             tasksButton.isUserInteractionEnabled = false
+            tasksButton.setTitle("sync", for: .normal)
         }
     }
     @IBOutlet weak var classesButton : UIButton!
     @IBOutlet weak var calendarButton : UIButton!
     
     @IBAction func onClickOfCalendar(_ sender: UIButton) {
-        
-        tasksView.isHidden = true
-        classesView.isHidden = true
-        
+        if self.children.count > 0{
+            let viewControllers:[UIViewController] = self.children
+            for viewContoller in viewControllers{
+                print("DEEPak",viewControllers)
+                viewContoller.willMove(toParent: nil)
+                viewContoller.view.removeFromSuperview()
+                viewContoller.removeFromParent()
+            }
+        }
+        baseContainerView.isHidden = true
+        turnButtonsBlue(button: calendarButton)
+        turnButtonGrey(button: classesButton)
+        turnButtonGrey(button: tasksButton)
     }
     @IBAction func onClickOfTasks(_ sender : UIButton){
-        tasksView.isHidden = false
-        classesView.isHidden = true
+        
+        
     }
     @IBAction func onClickOfNotificationClasses(_ sender : UIButton) {
-        tasksView.isHidden = true
-        classesView.isHidden = false
+        baseContainerView.isHidden = false
+        turnButtonsBlue(button: classesButton)
+        turnButtonGrey(button: calendarButton)
+        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+        let classesVC = storyBoard.instantiateViewController(withIdentifier: "NotificationClassesVC") as! NotificationClassesVC
+        classesVC.classDict = classDict
+        self.baseContainerView.addSubview(classesVC.view)
+        self.addChild(classesVC)
+        self.view.bringSubviewToFront(baseContainerView)
     }
+    
    @IBAction func onClickOfJoin(_ sender: UIButton) {
           let p : Int = Int(personTypeForCalendar!)!
         if p == 1 {
@@ -239,7 +274,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     let date = formatter.string(from: i.startDate!)
                     formatter.dateFormat = "HH:mm"
                     let LocalObj = LocalEvents(title: i.title, startTime: self.convertHourFormate(for: formatter.string(from: i.startDate)), endTime: self.convertHourFormate(for: formatter.string(from: i.endDate)), note: "", key: date)
-                    CalenderEventStruct.tasksDict[date] = LocalObj
+//                    CalenderEventStruct.tasksDict[date] = LocalObj
                     if self.dict.keys.contains(date){
                         if !self.isEventPresent(self.dict[date]!, localEvent: LocalObj){
                              self.dict[date]!.append(LocalObj)
@@ -515,40 +550,9 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var calender: UICollectionView!
     @IBOutlet weak var weekView: WeekView!
     @IBOutlet weak var monthView: MonthViews!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("running")
-        initializeView()
-        calender.translatesAutoresizingMaskIntoConstraints = false
-        monthView.translatesAutoresizingMaskIntoConstraints=false
-        weekView.translatesAutoresizingMaskIntoConstraints=false
-        monthView.delegate=self
-        tableView.delegate = self
-        tableView.dataSource = self
-        /* remove unwanted cells - starts here */
-        self.tableView.tableFooterView = UIView()
-        /* remove unwanted cells - ends here */
-    }
+
   
-    override func viewWillAppear(_ animated: Bool) {
-        checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
-        dict.removeAll()
-        
-        CalenderEventStruct.tasksDict.removeAll()
-//        CalenderEventStruct.classDict.removeAll()
-//        classDict.removeAll()
-//        taskDict.removeAll()
-        var endPoint = String()
-        let p : Int = Int(personTypeForCalendar!)!
-        if p  == 1 {
-            endPoint = "\(Endpoints.subcribedClassEndPoint)\(userID)?searchText="
-        }
-        else {
-            endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
-        }
-        fetchAPI(with: endPoint)
-    }
+
     func createNewEvent(){
         
     }
@@ -612,7 +616,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         let url = URL(string:str)
         Alamofire.request(url!).responseJSON{response in
             let result = response.result.value as? Dictionary<String,Any>
-            // print(result)
+//             print("DK",result)
             if result!["message"] as! String == "Success" && result!["error"] as! Bool == false {
                 let ControlsData = result!["ControlsData"] as! Dictionary<String,Any>
                 let ClassList = ControlsData["ClassList"] as! [Dictionary<String,Any>]
@@ -642,11 +646,10 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
 //                    print("Deepak",startTime)
 //                    print("Deepak",endTime)
                    // let date = self.serverToLocal(date: items["UTC_ClassDatetime"] as! String)//DateHelper.localToUTC(date: items["date"] as! String, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy")
-                    let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String)
-                    CalenderEventStruct.classDict.append(calederEventObj)
-                    let notClassVC =  self.storyboard?.instantiateViewController(withIdentifier: "NotificationClassesVC") as? NotificationClassesVC
-                    notClassVC?.classDict = CalenderEventStruct.classDict
-                    print("DK",CalenderEventStruct.classDict)
+                    let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String, teacherName: items["FirstName"] as! String)
+                    
+                    self.classDict.append(calederEventObj)
+                    
                     if self.dict.keys.contains(date){
                         //let count = self.dict["date"]?.count
                         self.dict[date]!.append(calederEventObj)
@@ -700,8 +703,6 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     
                 }
                 _self.dict.removeAll()
-                CalenderEventStruct.tasksDict.removeAll()
-                CalenderEventStruct.classDict.removeAll()
 //                 _self.classDict.removeAll()
 //                 _self.taskDict.removeAll()
                 var endPoint = String()
@@ -719,6 +720,14 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             
             
         }
+    }
+    func turnButtonsBlue(button : UIButton){
+        button.tintColor = UIColor.init(hex: "2DA9EC")
+        button.isUserInteractionEnabled = false
+    }
+    func turnButtonGrey(button : UIButton){
+        button.tintColor = UIColor.init(hex: "3C3C43")
+        button.isUserInteractionEnabled = true
     }
 }
 
@@ -802,13 +811,15 @@ class calenderEvents {
 class LTWEvents: calenderEvents {
     var topic : String
     var grade : String
+    var teacherName : String
     var UTCStartTime : String
     var UTCEndTime : String
-    init(title : String , topic : String ,grade : String,startDate : String,endDate : String ,key : String, classId : Int , hostUrl : String, UTCStartTime : String, UTCEndTime : String) {
+    init(title : String , topic : String ,grade : String,startDate : String,endDate : String ,key : String, classId : Int , hostUrl : String, UTCStartTime : String, UTCEndTime : String, teacherName : String) {
         self.topic = topic
         self.grade = grade
         self.UTCEndTime = UTCEndTime
         self.UTCStartTime = UTCStartTime
+        self.teacherName = teacherName
         super.init(title: title,startDate: startDate,endDate: endDate,key: key, classId: classId, hostUrl: hostUrl)
     }
 }

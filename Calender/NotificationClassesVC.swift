@@ -7,26 +7,25 @@
 //
 
 import UIKit
-
+import Alamofire
 class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-    var classDict =  [LTWEvents]()
-     let personTypeForCalendar = UserDefaults.standard.string(forKey: "persontyp")
-    @IBOutlet weak var notificationClassesTableView : UITableView!
     
-
+    @IBOutlet weak var notificationClassesTableView : UITableView!
+    var classDict : [LTWEvents]!
+    let personType = UserDefaults.standard.string(forKey: "persontyp")
+    let loggedInUserID = UserDefaults.standard.string(forKey: "userID")
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        // Do any additional setup after loading the view.
-    }
-    override func viewWillAppear(_ animated: Bool) {
+        notificationClassesTableView.delegate = self
+        notificationClassesTableView.dataSource = self
         notificationClassesTableView.reloadData()
         print(classDict)
     }
+    override func viewWillAppear(_ animated: Bool) {
+    }
     @IBAction func joinButton(_ sender : UIButton){
-         let p : Int = Int(personTypeForCalendar!)!
+         let p : Int = Int(personType!)!
         if p == 1 {
                     let endPoint = Endpoints.classStartedEndpoint + userID + "/" + "\(classDict[sender.tag].classId)"
                    actionName = "StudentJoin"
@@ -75,6 +74,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
                self.navigationController?.pushViewController(viewController, animated: true)
     }
     @IBAction func unsubscribeButton(_ sender : UIButton) {
+
          if NetworkReachabilityManager()?.isReachable ?? false {
                     //Internet connected,Go ahead
             
@@ -85,6 +85,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
                     //NO Internet connection, just return
                     showMessage(bodyText: "No internet connection",theme: .warning)
                 }
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,25 +96,36 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let i = classDict[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationClassesCell", for: indexPath) as! NotificationClassesCell
+        if personType == "1"{ //student
+            cell.subscribeUnsubscribeButton.isHidden = false
+            cell.tutorNameLabel.isHidden = false
+            // Attachment for tutor whiteboard image befor tutor name.
+            let attachment = NSTextAttachment()
+            attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
+            let attachmentString = NSAttributedString(attachment: attachment)
+            var myString = NSMutableAttributedString(string: i.teacherName) // Veeresh, please add tutor name in this empty space.
+            myString.append(attachmentString)
+            cell.tutorNameLabel.attributedText = myString
+        }else{
+            cell.subscribeUnsubscribeButton.isHidden = true
+            cell.tutorNameLabel.isHidden = true
+            cell.tutorNameLabel.text = ""
+        }
         cell.classTitle.text = i.tittle
         cell.classDate.text = i.key
         cell.grades.text = i.grade
-        cell.timings.text = "\(i.startDate) TO \(i.endDate)"
+        cell.timings.text = "\(i.startDate) To \(i.endDate)"
         cell.subject.text = i.topic
         cell.joinButton.tag = indexPath.row
         cell.whiteboardButton.tag = indexPath.row
         cell.subscribeUnsubscribeButton.tag = indexPath.row
+
        // cell.tutorNameLabel.text = ""
-        // Attachment for tutor whiteboard image befor tutor name.
-        let attachment = NSTextAttachment()
-        attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
-        let attachmentString = NSAttributedString(attachment: attachment)
-        var myString = NSMutableAttributedString(string: " Deepak") // Veeresh, please add tutor name in this empty space.
-        myString.append(attachmentString)
-        cell.tutorNameLabel.attributedText = myString
+       
         return cell
 
     }
+    
 
     
    
