@@ -67,19 +67,23 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
         viewController.viewFinalImageButton.title = ""
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    var unsubSuccess : Int!
     @IBAction func unsubscribeButton(_ sender : UIButton) {
         if NetworkReachabilityManager()?.isReachable ?? false {
             //Internet connected,Go ahead
             let endPoint = Endpoints.unsubscribeClassEndPoint + userID! + "/" + "\(classDict[sender.tag].classId)"
             actionName = "Classunsubscribe"
             hitServer(params: [:], endPoint: endPoint ,action: actionName, httpMethod: .get)
+            if unsubSuccess == 1 {
+                classDict.remove(at: sender.tag)
+                notificationClassesTableView.reloadData()
+            }
         }else {
             //NO Internet connection, just return
             showMessage(bodyText: "No internet connection",theme: .warning)
         }
         
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return classDict.count
 //        return 1
@@ -120,6 +124,7 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
     
     //HitServer Function Goes Here.
     func hitServer(params: [String:Any],endPoint: String, action: String,httpMethod: HTTPMethod) {
+        self.unsubSuccess = 0
         LTWClient.shared.hitService(withBodyData: params, toEndPoint: endPoint, using: httpMethod, dueToAction: action){[weak self] result in
             guard let _self = self else {
                 return
@@ -133,12 +138,13 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
                 }
                 else {
                     /*Added by yasodha on 27/1/2020 - starts*/
-                    self!.actionName = action
+                    _self.actionName = action
                     //after coming from the Zoom
-                    if self!.actionName == "startClass" || self!.actionName == "Joinclass"{
+                    if _self.actionName == "startClass" || _self.actionName == "Joinclass"{
                     }
                     else if _self.actionName == "unsubscribe" {
                         // showMessage(bodyText: msg,theme: .success) /*  Commented By Ranjeet on 19th March 2020 */
+                        _self.unsubSuccess = 1
                         showMessage(bodyText: "You have unsubscribed from this class",theme: .success)  /*  Updated By Ranjeet on 19th March 2020 */
                     }
                 }

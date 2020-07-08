@@ -160,6 +160,7 @@
 		E576B941233CE36E00F4ABF9 /* ImageSwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E576B938233CE36B00F4ABF9 /* ImageSwipeVC.swift */; };
 		E576B942233CE36E00F4ABF9 /* WebVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E576B939233CE36C00F4ABF9 /* WebVC.swift */; };
 		E576B944233CE68C00F4ABF9 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E576B943233CE68C00F4ABF9 /* AppConstants.swift */; };
+		E579333A24B59B970083676C /* timezones.json in Resources */ = {isa = PBXBuildFile; fileRef = E579333924B59B920083676C /* timezones.json */; };
 		E57AD857227C3EC6009F0060 /* BorderForUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57AD856227C3EC6009F0060 /* BorderForUIView.swift */; };
 		E57B064F22F45CC10006092B /* AttandTestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57B064E22F45CC00006092B /* AttandTestVC.swift */; };
 		E57C2E0122E8752100DC20FF /* MyGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C2E0022E8752100DC20FF /* MyGroupsVC.swift */; };
@@ -469,6 +470,7 @@
 		E576B938233CE36B00F4ABF9 /* ImageSwipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSwipeVC.swift; sourceTree = "<group>"; };
 		E576B939233CE36C00F4ABF9 /* WebVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebVC.swift; sourceTree = "<group>"; };
 		E576B943233CE68C00F4ABF9 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		E579333924B59B920083676C /* timezones.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = timezones.json; sourceTree = "<group>"; };
 		E57AD856227C3EC6009F0060 /* BorderForUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderForUIView.swift; sourceTree = "<group>"; };
 		E57B064E22F45CC00006092B /* AttandTestVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttandTestVC.swift; sourceTree = "<group>"; };
 		E57C2E0022E8752100DC20FF /* MyGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroupsVC.swift; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 		E5176F9D225B4B8A009EA999 /* LTW */ = {
 			isa = PBXGroup;
 			children = (
+				E579333924B59B920083676C /* timezones.json */,
 				E5149E9E2318FB3A005FA0E6 /* LTW.entitlements */,
 				E5149EA12319056B005FA0E6 /* LSJE038.mp3 */,
 				E510A76924AAFD7A0056E55A /* EncashDetailsVC.swift */,
@@ -1256,6 +1259,7 @@
 				047BD62E2424881C00C9DBB6 /* DatePopupViewControllerForCreateRequestClassAndRequestForAClass.storyboard in Resources */,
 				E58F46952494CE3100161EAA /* InfoViewController.xib in Resources */,
 				E5176FA9225B4B8C009EA999 /* LaunchScreen.storyboard in Resources */,
+				E579333A24B59B970083676C /* timezones.json in Resources */,
 				E5B8593A2367FCF700866208 /* PenSize.xib in Resources */,
 				E5149EA22319056C005FA0E6 /* LSJE038.mp3 in Resources */,
 				E5DDE25F2424ECE200A7A10B /* ObjectiveQues.xib in Resources */,

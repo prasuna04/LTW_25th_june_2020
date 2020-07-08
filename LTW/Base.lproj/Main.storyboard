@@ -7382,8 +7382,8 @@
                                                                         <constraint firstAttribute="height" constant="50" id="1Tm-VY-NwD"/>
                                                                     </constraints>
                                                                 </stackView>
-                                                                <wkWebView contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mfa-gM-kgT">
-                                                                    <rect key="frame" x="10" y="98" width="560" height="179"/>
+                                                                <wkWebView contentMode="scaleAspectFit" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfa-gM-kgT">
+                                                                    <rect key="frame" x="10" y="98" width="558" height="179"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                                     <wkWebViewConfiguration key="configuration" allowsInlineMediaPlayback="YES">
                                                                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -24138,8 +24138,8 @@
                                                                 <constraint firstItem="Fd9-4O-bRP" firstAttribute="centerX" secondItem="a0c-Yx-x5t" secondAttribute="centerX" id="Web-SP-tTQ"/>
                                                             </constraints>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Teacher's Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8A-iD-I1H">
-                                                            <rect key="frame" x="233" y="156.33333333333334" width="93.333333333333371" height="17.333333333333343"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Teacher's Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8A-iD-I1H">
+                                                            <rect key="frame" x="233.00000000000003" y="156.33333333333334" width="93.333333333333343" height="17.333333333333343"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="13"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -24196,6 +24196,7 @@
                                                         <constraint firstItem="bvt-UD-Fef" firstAttribute="leading" secondItem="JmP-u1-EAh" secondAttribute="leading" constant="10" id="Gxd-4k-PKU"/>
                                                         <constraint firstAttribute="trailing" secondItem="bvt-UD-Fef" secondAttribute="trailing" constant="10" id="OoM-zb-suw"/>
                                                         <constraint firstItem="J8A-iD-I1H" firstAttribute="centerY" secondItem="NhE-fE-qKi" secondAttribute="centerY" id="cQy-48-Cpl"/>
+                                                        <constraint firstItem="J8A-iD-I1H" firstAttribute="leading" secondItem="BD4-dS-yvg" secondAttribute="trailing" constant="10" id="ck1-jV-0Kb"/>
                                                         <constraint firstItem="bvt-UD-Fef" firstAttribute="top" secondItem="apP-Mh-tqx" secondAttribute="bottom" constant="10" id="dVu-IN-4Qa"/>
                                                         <constraint firstItem="apP-Mh-tqx" firstAttribute="top" secondItem="BD4-dS-yvg" secondAttribute="top" id="fbm-OJ-5Lh"/>
                                                         <constraint firstItem="BD4-dS-yvg" firstAttribute="leading" secondItem="apP-Mh-tqx" secondAttribute="leading" constant="10" id="hhx-fi-jBa"/>

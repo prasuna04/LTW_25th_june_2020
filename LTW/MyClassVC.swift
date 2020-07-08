@@ -2279,25 +2279,50 @@ extension MyClassVC {
         return temp
     }
     func getCurrentTimeZoneName() -> String {
-
-    // //1
-    // let item = TimeZone.current.identifier
-    // timeZone = item ?? ""
-    //
-    // let abbreviationDictionary = TimeZone.abbreviationDictionary
-    // print("\(abbreviationDictionary)")
-    // print(timeZone)
-    // let key = (abbreviationDictionary.filter { $0.value == timeZone }).first?.key
-    // print("Keyvalue : \(key!)")
-
-    // return key ?? ""
-
-    // return "\(timezone1)" ?? ""
-
-    let item = TimeZone.current.localizedName(for: .standard, locale: .current) ?? ""
-
-
-    return item
+        
+        // //1
+        // let item = TimeZone.current.identifier
+        // timeZone = item ?? ""
+        //
+        // let abbreviationDictionary = TimeZone.abbreviationDictionary
+        // print("\(abbreviationDictionary)")
+        // print(timeZone)
+        // let key = (abbreviationDictionary.filter { $0.value == timeZone }).first?.key
+        // print("Keyvalue : \(key!)")
+        
+        // return key ?? ""
+        
+        // return "\(timezone1)" ?? ""
+        
+        let localizedName = TimeZone.current.localizedName(for: .standard, locale: .current) ?? ""
+        
+        
+        if let path = Bundle.main.path(forResource: "timezones", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                let jsonarry = try JSON(data: data)
+                
+                
+                var setName = false
+                // print("Json array: \(jsonarry)")
+                for item in jsonarry.array ?? [] {
+                    
+                    // print("Value is: \(item["value"])")
+                    
+                    if localizedName == item["value"].stringValue{
+                        setName = true
+                        print("Localized name is \(localizedName)")
+                        return item["abbr"].stringValue
+                    }
+                }
+            } catch let error {
+                print("parse error: \(error.localizedDescription)")
+            }
+        } else {
+            print("Invalid filename/path.")
+        }
+        
+        return localizedName ?? ""
     }
     
 }

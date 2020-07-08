@@ -167,7 +167,7 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
         inlineKeyboard.questionID = self.questionID
         //        let nav = UINavigationController(rootViewController: inlineKeyboard)
         //        nav.modalPresentationStyle = .fullScreen    /* Added By Veeresh on 2nd jan 2020 */
-        self.navigationController?.pushViewController(inlineKeyboard, animated: true)//addede by veeresh on 17/01/2020
+        self.navigationController?.pushViewController(inlineKeyboard, animated: false)//addede by veeresh on 17/01/2020
         //  self.present(nav, animated: true, completion: nil)
         /* below code is added by veeresh on 19/12/19 - ends here */
     }
@@ -329,6 +329,16 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
         cell.spamBtn.tag = indexPath.row
         cell.spamBtn.addTarget(self, action: #selector(reportOffensiveBtnSelected(sender:)), for: .touchUpInside)
         return cell
+    }
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        //navigationAction.request.url
+        if let url = navigationAction.request.url {
+           
+            UIApplication.shared.openURL(url)
+             decisionHandler(.cancel)
+        } else {
+            decisionHandler(.allow)
+        }
     }
     
     /* Added Below two table View And Web View Method Implemented By Veeresh on 26th Dec 2019 - starts here */

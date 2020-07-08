@@ -38,6 +38,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         /* remove unwanted cells - ends here */
     }
         override func viewWillAppear(_ animated: Bool) {
+            navigationItem.rightBarButtonItem?.tintColor = .clear
             checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
             dict.removeAll()
     //        classDict.removeAll()
@@ -83,7 +84,6 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     }
     @IBOutlet weak var tasksButton : UIButton! {
         didSet{
-            tasksButton.isUserInteractionEnabled = false
             tasksButton.setTitle("sync", for: .normal)
         }
     }
@@ -105,10 +105,40 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         turnButtonGrey(button: classesButton)
         turnButtonGrey(button: tasksButton)
     }
-    @IBAction func onClickOfTasks(_ sender : UIButton){
-        
-        
-    }
+    @IBAction func onClickOfTasks(_ sender : UIButton){  //task button works for sync
+            var count = Int()
+            for (key , value) in dict.keys.enumerated(){
+                print ("key \(key)  value \(value)")
+                for i in dict[value]!{
+                    if i is LTWEvents{
+    //                    let startDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.startDate)"
+    //                    let endDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.endDate)"
+    //                    let dateFormatter =  DateFormatter()
+                        //                dateFormatter.dateFormat = dateFormatter.string(from: Date()).contains("am") ? "dd-MM-yyyy h:mm a" : "dd-MM-yyyy h:mm a"
+    //                    dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
+    //                    dateFormatter.locale = Locale.current
+    //                    dateFormatter.timeZone = TimeZone.current
+    //                    let finalstartDate = dateFormatter.date(from: startDateStr)
+    //                    let finalEndDate = DateHelper.getDateObj(from: endDateStr, fromFormat: "dd-MM-yyyy h:mm a")
+    //                    let finalstartDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCStartTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
+                        
+                        let finalstartDate = UTCToLocal(date: (i as! LTWEvents).UTCStartTime)
+    //                    let finalEndDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCEndTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
+                        let finalEndDate = UTCToLocal(date: (i as! LTWEvents).UTCEndTime)
+                        let description =  i is LTWEvents ? "class on topic \((i as! LTWEvents).topic)" : ""
+                        addEventToCalendar(title: i.tittle , description: description , startDate: finalstartDate!, endDate: finalEndDate!, completion: {(success , error) in
+                            if success && error == nil {
+                                count += 1
+                            }
+                        })
+                        print("start at \(String(describing: finalstartDate))   and end \(String(describing: finalEndDate))")
+                    }
+                }
+                    
+            }
+            print(count)
+            self.calender.reloadData()
+        }
     @IBAction func onClickOfNotificationClasses(_ sender : UIButton) {
         baseContainerView.isHidden = false
         turnButtonsBlue(button: classesButton)
@@ -514,38 +544,38 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func navigationRight(_ sender: UIBarButtonItem ) {
-        var count = Int()
-        for (key , value) in dict.keys.enumerated(){
-            print ("key \(key)  value \(value)")
-            for i in dict[value]!{
-                if i is LTWEvents{
-//                    let startDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.startDate)"
-//                    let endDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.endDate)"
-//                    let dateFormatter =  DateFormatter()
-                    //                dateFormatter.dateFormat = dateFormatter.string(from: Date()).contains("am") ? "dd-MM-yyyy h:mm a" : "dd-MM-yyyy h:mm a"
-//                    dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
-//                    dateFormatter.locale = Locale.current
-//                    dateFormatter.timeZone = TimeZone.current
-//                    let finalstartDate = dateFormatter.date(from: startDateStr)
-//                    let finalEndDate = DateHelper.getDateObj(from: endDateStr, fromFormat: "dd-MM-yyyy h:mm a")
-//                    let finalstartDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCStartTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
-                    
-                    let finalstartDate = UTCToLocal(date: (i as! LTWEvents).UTCStartTime)
-//                    let finalEndDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCEndTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
-                    let finalEndDate = UTCToLocal(date: (i as! LTWEvents).UTCEndTime)
-                    let description =  i is LTWEvents ? "class on topic \((i as! LTWEvents).topic)" : ""
-                    addEventToCalendar(title: i.tittle , description: description , startDate: finalstartDate!, endDate: finalEndDate!, completion: {(success , error) in
-                        if success && error == nil {
-                            count += 1
-                        }
-                    })
-                    print("start at \(String(describing: finalstartDate))   and end \(String(describing: finalEndDate))")
-                }
-            }
-                
-        }
-        print(count)
-        self.calender.reloadData()
+//        var count = Int()
+//        for (key , value) in dict.keys.enumerated(){
+//            print ("key \(key)  value \(value)")
+//            for i in dict[value]!{
+//                if i is LTWEvents{
+////                    let startDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.startDate)"
+////                    let endDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.endDate)"
+////                    let dateFormatter =  DateFormatter()
+//                    //                dateFormatter.dateFormat = dateFormatter.string(from: Date()).contains("am") ? "dd-MM-yyyy h:mm a" : "dd-MM-yyyy h:mm a"
+////                    dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
+////                    dateFormatter.locale = Locale.current
+////                    dateFormatter.timeZone = TimeZone.current
+////                    let finalstartDate = dateFormatter.date(from: startDateStr)
+////                    let finalEndDate = DateHelper.getDateObj(from: endDateStr, fromFormat: "dd-MM-yyyy h:mm a")
+////                    let finalstartDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCStartTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
+//
+//                    let finalstartDate = UTCToLocal(date: (i as! LTWEvents).UTCStartTime)
+////                    let finalEndDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCEndTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
+//                    let finalEndDate = UTCToLocal(date: (i as! LTWEvents).UTCEndTime)
+//                    let description =  i is LTWEvents ? "class on topic \((i as! LTWEvents).topic)" : ""
+//                    addEventToCalendar(title: i.tittle , description: description , startDate: finalstartDate!, endDate: finalEndDate!, completion: {(success , error) in
+//                        if success && error == nil {
+//                            count += 1
+//                        }
+//                    })
+//                    print("start at \(String(describing: finalstartDate))   and end \(String(describing: finalEndDate))")
+//                }
+//            }
+//
+//        }
+//        print(count)
+//        self.calender.reloadData()
     }
     @IBOutlet weak var calender: UICollectionView!
     @IBOutlet weak var weekView: WeekView!
@@ -723,10 +753,13 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     }
     func turnButtonsBlue(button : UIButton){
         button.tintColor = UIColor.init(hex: "2DA9EC")
-        button.isUserInteractionEnabled = false
+        button.setTitleColor(.init(hex: "2DA9EC"), for: .normal)
+        button.isUserInteractionEnabled = false //here
+        
     }
     func turnButtonGrey(button : UIButton){
         button.tintColor = UIColor.init(hex: "3C3C43")
+        button.setTitleColor(.init(hex: "3C3C43"), for: .normal)
         button.isUserInteractionEnabled = true
     }
 }

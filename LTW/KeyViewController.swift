@@ -300,6 +300,15 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
             
             self.present(alertController, animated: false, completion: nil)
     }
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+           // UIApplication.shared.canOpenURL(URL)
+          // let urls : URL? = URL
+          // if let videoURL = urls{
+              UIApplication.shared.canOpenURL(URL)
+          // }
+           // UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+           return false
+       }
     func findImage(textStorage: NSTextStorage) {
         //this function is used to find number of images present in the textView storage and stored in a images array
         for idx in 0 ..< textStorage.string.count {
