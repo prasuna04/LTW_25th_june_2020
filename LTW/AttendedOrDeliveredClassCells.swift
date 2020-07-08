@@ -76,25 +76,6 @@ class AttendedOrDeliveredClassCells: UITableViewCell {
         else if attendedOrDeliveredClassData.publicorPrivateID == 2 {
             publicOrPrivateClassButton.isSelected = true
         }
-        //Code for Time Comparison starts here.
-        
-        //        let dateWithStartTime = "\(DateHelper.formattDate(date: DateHelper.getDateObj(from: attendedOrDeliveredClassData.classCommencingDate, fromFormat: "yyyy-MM-dd'T'HH:mm:ss"), toFormatt: "yyyy-MM-dd"))T\(attendedOrDeliveredClassData.classStartTime):00"
-        //2020-03-19T17:10:00
-        
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" //Your date format
-        //        dateFormatter.timeZone = TimeZone(abbreviation: "UTC") //Current time zone
-        //according to date format your date string
-        
-        //        guard let startDate = dateFormatter.date(from: dateWithStartTime) else {
-        //            fatalError()
-        //        }
-        //        let dateWithEndTime = "\(DateHelper.formattDate(date: DateHelper.getDateObj(from: attendedOrDeliveredClassData.classCommencingDate, fromFormat: "yyyy-MM-dd'T'HH:mm:ss"), toFormatt: "yyyy-MM-dd"))T\(attendedOrDeliveredClassData.classEndtime):00"
-        //        print(dateWithEndTime)
-        
-        //        guard let endDate = dateFormatter.date(from: dateWithEndTime) else {
-        //            fatalError()
-        //        }
         let date = Date()
 //        if  date > startDate! && date < endDate! {
 //            subscribeOrExpiredButton.alpha  = 1
@@ -132,7 +113,6 @@ class AttendedOrDeliveredClassCells: UITableViewCell {
                         subscribeOrExpiredButton.setTitleColor(.white, for: .normal)
                         subscribeOrExpiredButton.backgroundColor = .red
                     }
-                    
                     
                 }
                 else if personType == 3 {

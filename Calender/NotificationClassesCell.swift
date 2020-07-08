@@ -10,6 +10,7 @@ import UIKit
 
 class NotificationClassesCell: UITableViewCell {
     
+    var cellDelegate : GroupCell?
     @IBOutlet weak var classDate : UILabel!
     @IBOutlet weak var classTitle : UILabel!
     @IBOutlet weak var grades : UILabel!
@@ -41,6 +42,15 @@ class NotificationClassesCell: UITableViewCell {
     }
     @IBOutlet weak var tutorNameLabel : UILabel!
     
+    @IBAction func onClickJoinButton(_ sender : UIButton){
+        
+    }
+    @IBAction func onClickWhiteBoardButton(_ sender : UIButton){
+        
+    }
+    @IBAction func onClickUnsubscribeButton(_ sender : UIButton){
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

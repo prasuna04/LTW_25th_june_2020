@@ -276,13 +276,17 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
             //     textField.placeholder = "Enter the Link"
             // }
             alertController.addTextField { (textField) in
-                 textField.placeholder = "Enter the Link"
+                 textField.placeholder = "text to display"
             }
+            alertController.addTextField { (textField) in
+                        textField.placeholder = "Enter the Link"
+                   }
        
             let saveAction = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
                 let firstTextField = alertController.textFields![0] as UITextField
+                let secondTextField = alertController.textFields![1] as UITextField
                 let attr = NSMutableAttributedString(string: firstTextField.text!)
-                attr.addAttribute(.link, value: URL(fileURLWithPath: firstTextField.text!) , range: NSRange(location: 0, length:firstTextField.text!.count ))
+                attr.addAttribute(.link, value: URL(fileURLWithPath: secondTextField.text!) , range: NSRange(location: 0, length:firstTextField.text!.count ))
                 self.textView.textStorage.insert(attr, at: self.textView.selectedRange.location)
                 let myAttribute = [ NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14) ]
                            let myAttrString = NSAttributedString(string: "  ", attributes: myAttribute)
@@ -304,7 +308,7 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
            // UIApplication.shared.canOpenURL(URL)
           // let urls : URL? = URL
           // if let videoURL = urls{
-              UIApplication.shared.canOpenURL(URL)
+              UIApplication.shared.open(URL)
           // }
            // UIApplication.shared.open(URL, options: [:], completionHandler: nil)
            return false

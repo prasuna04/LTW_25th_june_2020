@@ -97,12 +97,12 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
             cell.tutorNameLabel.isHidden = false
             // Attachment for tutor whiteboard image befor tutor name.
             let teacherFirstName = (i.teacherName).split(separator: " ")
-            let attachment = NSTextAttachment()
-            attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
-            let attachmentString = NSAttributedString(attachment: attachment)
-            let myString = NSMutableAttributedString(string: String(teacherFirstName[0]))
-            myString.append(attachmentString)
-            cell.tutorNameLabel.attributedText = myString
+//            let attachment = NSTextAttachment()
+//            attachment.image = UIImage(named: "Icon awesome-chalkboard-teacher")
+//            let attachmentString = NSAttributedString(attachment: attachment)
+//        let myString = NSMutableAttributedString(string: String(teacherFirstName[0]))
+//            let addedString = attachmentString+ "\(myStrinf)"
+            cell.tutorNameLabel.text = String(teacherFirstName[0])
         }else{
             cell.subscribeUnsubscribeButton.isHidden = true
             cell.tutorNameLabel.isHidden = true
@@ -116,9 +116,6 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
         cell.joinButton.tag = indexPath.row
         cell.whiteboardButton.tag = indexPath.row
         cell.subscribeUnsubscribeButton.tag = indexPath.row
-
-       // cell.tutorNameLabel.text = ""
-       
         return cell
     }
     
@@ -154,6 +151,8 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
             
         }
     }
+    
+    
 
     
    

@@ -330,15 +330,28 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
         cell.spamBtn.addTarget(self, action: #selector(reportOffensiveBtnSelected(sender:)), for: .touchUpInside)
         return cell
     }
+//    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+//        //navigationAction.request.url
+//        if let url = navigationAction.request.url {
+//
+//            UIApplication.shared.openURL(url)
+//             decisionHandler(.cancel)
+//        } else {
+//            decisionHandler(.allow)
+//        }
+//    }
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        //navigationAction.request.url
-        if let url = navigationAction.request.url {
-           
-            UIApplication.shared.openURL(url)
-             decisionHandler(.cancel)
-        } else {
-            decisionHandler(.allow)
-        }
+//         if let url = navigationAction.request.url  {
+//                // This is not HTTP link - can be a local file or a mailto
+//               
+//               UIApplication.shared.open(url)
+//             decisionHandler(.cancel)
+//            }
+//         else {
+//            // This is a HTTP link
+//                    decisionHandler(.allow)
+//        }
+        
     }
     
     /* Added Below two table View And Web View Method Implemented By Veeresh on 26th Dec 2019 - starts here */
