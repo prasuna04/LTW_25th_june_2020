@@ -124,6 +124,7 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
             showMessage(bodyText: "No internet",buttonTitle: "Retry",theme: .error,buttonTapHandler: {(done) in
             })
         }
+        tabLeView.reloadData()
     }
     //pull to refresh
     @objc func hitApi() {

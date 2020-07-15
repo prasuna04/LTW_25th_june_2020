@@ -23,7 +23,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        calendarButton.isSelected = true
         print("running")
         initializeView()
         calender.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,6 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     var endPoint : String!
     override func viewWillAppear(_ animated: Bool) {
         navigationItem.rightBarButtonItem?.tintColor = .clear
-        turnButtonsBlue(button: calendarButton)
         checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
         dict.removeAll()
         let p : Int = Int(personTypeForCalendar!)!
@@ -51,6 +50,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         else {
             endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
         }
+        classDict.removeAll()
         fetchAPI(with: endPoint)
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,18 +66,10 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         }
         return 0
     }
-    func buttonSlectedState(button : UIButton){
-        button.tintColor = UIColor.white
-        button.backgroundColor = UIColor.init(hex: "2DA9EC")
-    }
-    func buttonIsNotSelected(button : UIButton){
-        button.tintColor = UIColor.init(hex: "2DA9EC")
-        button.backgroundColor = UIColor.white
-    }
     @IBOutlet weak var subNotification: UIView!{
         didSet{
             subNotification.layer.shadowOffset = .zero
-            subNotification.layer.shadowColor = UIColor.black.cgColor
+            subNotification.layer.shadowColor = UIColor.init(hex: "A39D9D").cgColor
             subNotification.layer.shadowOpacity = 1
             subNotification.layer.cornerRadius = subNotification.frame.height/2
         }
@@ -91,6 +83,8 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     @IBOutlet weak var calendarButton : UIButton!
     
     @IBAction func onClickOfCalendar(_ sender: UIButton) {
+        calendarButton.isSelected = true
+        classesButton.isSelected = false
         if self.children.count > 0{
             let viewControllers:[UIViewController] = self.children
             for viewContoller in viewControllers{
@@ -101,9 +95,6 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             }
         }
         baseContainerView.isHidden = true
-        turnButtonsBlue(button: calendarButton)
-        turnButtonGrey(button: classesButton)
-        turnButtonGrey(button: tasksButton)
         dict.removeAll()
         classDict.removeAll()
         fetchAPI(with: endPoint)
@@ -144,10 +135,9 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         self.calender.reloadData()
     }
     @IBAction func onClickOfNotificationClasses(_ sender : UIButton) {
+        calendarButton.isSelected = false
+        classesButton.isSelected = true
         baseContainerView.isHidden = false
-        turnButtonsBlue(button: classesButton)
-        turnButtonGrey(button: calendarButton)
-        turnButtonGrey(button: tasksButton)
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let classesVC = storyBoard.instantiateViewController(withIdentifier: "NotificationClassesVC") as! NotificationClassesVC
         classesVC.classDict = classDict
@@ -760,17 +750,6 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             
             
         }
-    }
-    func turnButtonsBlue(button : UIButton){
-//        button.tintColor = UIColor.init(hex: "2DA9EC")
-        button.setTitleColor(.init(hex: "2DA9EC"), for: .normal)
-        button.isUserInteractionEnabled = false //here
-        
-    }
-    func turnButtonGrey(button : UIButton){
-//        button.tintColor = UIColor.init(hex: "3C3C43")
-        button.setTitleColor(.init(hex: "3C3C43"), for: .normal)
-        button.isUserInteractionEnabled = true
     }
 }
 

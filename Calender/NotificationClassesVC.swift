@@ -9,7 +9,8 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, GroupCell{
+import NVActivityIndicatorView
+class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableViewDelegate, GroupCell, NVActivityIndicatorViewable{
     
     @IBOutlet weak var notificationClassesTableView : UITableView!
     
@@ -51,12 +52,15 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
         let currentDate = Date()
         print( classDict[indexPath.row].key == datef.string(from: currentDate))
         if classDict[indexPath.row].key == datef.string(from: currentDate) {
-            let classDate = "\(classDict[indexPath.row].key) \(classDict[indexPath.row].startDate)"
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd-MM-YYYY h:mm a"
-            let classDate1 = dateFormatter.date(from: classDate)
-            print(classDate1)
-            if minutes(from: datef.date(from: classDict[indexPath.row].startDate)!) >= -30 && minutes(from: datef.date(from:  classDict[indexPath.row].startDate)!) <= 30 {
+            dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+            dateFormatter.dateFormat = "h:mm a"
+            let date = dateFormatter.date(from: classDict[indexPath.row].startDate)
+            dateFormatter.dateFormat = "HH:mm"
+            let date24 = dateFormatter.string(from: date!)
+            print(date24)
+//            if minutes(from: datef.date(from: classDict[indexPath.row].startDate)!) >= -30 && minutes(from: datef.date(from:  classDict[indexPath.row].startDate)!) <= 30 {
+            if minutes(from: date!) >= -30 && minutes(from: date!) <= 30 {
                 cell.joinButton.isUserInteractionEnabled = true
                 cell.joinButton.backgroundColor = UIColor.init(hex:"60A200")
             }
@@ -186,18 +190,17 @@ class NotificationClassesVC: UIViewController, UITableViewDataSource, UITableVie
         if NetworkReachabilityManager()?.isReachable ?? false {
             let endPoint = Endpoints.unsubscribeClassEndPoint + userID! + "/" + "\(classDict[index].classId)"
             print(endPoint)
+            startAnimating(type:.lineScale,color: UIColor.init(hex: "2DA9EC"))
             Alamofire.request(endPoint).responseJSON { response in
-                print(response.request!)   // original url request
-                print(response.response!) // http url response
-                print(response.result)  // response serialization result
-                if let json = response.result.value {
-                    print("JSON: \(json)") // serialized json response
-                }
+                self.stopAnimating()
+                let json = response.result.value as? [String: Any]
                 if "\(response.result)" == "SUCCESS"{
-                    showMessage(bodyText: "Class Unsubscribed",theme: .success)
-                    self.classDict.remove(at: index)
-                    DispatchQueue.main.asyncAfter(deadline: .now()) {
-                        self.notificationClassesTableView.reloadData()
+                    if json!["error"] as? Bool  == false {
+                            showMessage(bodyText: "Unsubscribed Successfully!",theme: .success)
+                            self.classDict.remove(at: index)
+                            self.notificationClassesTableView.reloadData()
+                        }else{
+                            showMessage(bodyText: json!["message"] as! String,theme: .error)
                     }
                 }
                 else {

@@ -21806,19 +21806,25 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49A-d5-Bwj">
                                                 <rect key="frame" x="0.0" y="0.0" width="131.33333333333334" height="40"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                                 <state key="normal" title=" Calendar" image="Icon awesome-calendar-alt">
                                                     <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <state key="selected" title="Calender" image="Group 68-1">
+                                                    <color key="titleColor" red="0.1764705882352941" green="0.66274509803921566" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="onClickOfCalendar:" destination="dK3-zq-RCD" eventType="touchUpInside" id="2RQ-xm-fcN"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6p-Ib-xUG">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k6p-Ib-xUG">
                                                 <rect key="frame" x="131.33333333333331" y="0.0" width="131.33333333333331" height="40"/>
-                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
-                                                <state key="normal" title="Classes">
+                                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                                <state key="normal" title=" Classes" image="Icon awesome-book">
                                                     <color key="titleColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <state key="selected" title="Classes" image="Icon awesome-book-1">
+                                                    <color key="titleColor" red="0.1764705882" green="0.66274509800000003" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="onClickOfNotificationClasses:" destination="dK3-zq-RCD" eventType="touchUpInside" id="lXU-4M-rwu"/>
@@ -24306,6 +24312,9 @@
         <image name="Bronze" width="10.333333015441895" height="25.333333969116211"/>
         <image name="Group 1" width="256" height="147.66667175292969"/>
         <image name="Group 6" width="320" height="449"/>
+        <image name="Group 68-1" width="12.333333015441895" height="14"/>
+        <image name="Icon awesome-book" width="11.666666984558105" height="13"/>
+        <image name="Icon awesome-book-1" width="11.666666984558105" height="13"/>
         <image name="Icon awesome-calendar-alt" width="16.666666030883789" height="19"/>
         <image name="Icon awesome-chalkboard-teacher" width="17.333333969116211" height="14"/>
         <image name="Icon feather-arrow-right-circle" width="23.333333969116211" height="23.333333969116211"/>
