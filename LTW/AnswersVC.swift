@@ -78,6 +78,8 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
         /* remove unwanted cells - starts here */
         self.tabLeView.tableFooterView = UIView()
         /* remove unwanted cells - ends here */
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         
         tabLeView.delegate = self
         tabLeView.dataSource = self
@@ -91,12 +93,18 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
             self.tabLeView.reloadData()
         }
     }
+    
+    @objc func appMovedToBackground() {
+        print("App moved to ForeGround!")
+        tabLeView.reloadData()
+    }
     override func viewWillDisappear(_ animated: Bool) {
         self.views.stopShimmering()
         self.views.removeFromSuperview()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+       // tabLeView.reloadData()
         answerPointsLbl.isHidden = true
         trophy.isHidden = true
         //contentHeights = [0.0,0.0] // commented by veeresh on 17th-Jan-2020
@@ -351,7 +359,9 @@ class AnswersVC: UIViewController, NVActivityIndicatorViewable, UITableViewDeleg
 //            // This is a HTTP link
 //                    decisionHandler(.allow)
 //        }
-        
+        let url = navigationAction.request.url
+        UIApplication.shared.open(url!)
+        decisionHandler(.allow) 
     }
     
     /* Added Below two table View And Web View Method Implemented By Veeresh on 26th Dec 2019 - starts here */

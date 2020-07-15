@@ -37,6 +37,7 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
     var localImgUrl=[String]()
     var imagePicker = ImagePicker()
     var scribbledImg : UIImage?//()
+    var isThere = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +55,7 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
         print("running")
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true 
+        self.tabBarController?.tabBar.isHidden = true
           updateNavigationController()
     }
     func updateNavigationController() {
@@ -121,6 +122,9 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
             if (html?.contains("img src"))!{
                  finalAnswerString=replaceFileName(String: html!, with: uploadImagesToServer())
             }
+            else if isThere {
+                 finalAnswerString=html!
+            }
             else {
                  let myAttribute = [ NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14) ]
                 finalAnswerString=NSAttributedString(string: textView.text,attributes: myAttribute).attributedString2Html!  //++++++edited
@@ -135,6 +139,7 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
     }
     
     @objc func keyboardWillShow(notification: NSNotification) {
+       // self.view.frame.origin.y = 0
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             print(keyboardFrame = keyboardSize) //we are taking the keyboard frame
             print("x=\(keyboardSize.origin.x) and   y=\(keyboardSize.origin.y)")
@@ -275,18 +280,16 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
             // alertController.addTextField { (textField : UITextField!) -> Void in
             //     textField.placeholder = "Enter the Link"
             // }
-            alertController.addTextField { (textField) in
-                 textField.placeholder = "text to display"
-            }
-            alertController.addTextField { (textField) in
-                        textField.placeholder = "Enter the Link"
-                   }
-       
+            alertController.addTextField(configurationHandler: {(textField : UITextField!) -> Void in
+                 textField.placeholder = "Enter the Link"
+            })
             let saveAction = UIAlertAction(title: "Add", style: .default, handler: { alert -> Void in
+                self.isThere = true
+                
                 let firstTextField = alertController.textFields![0] as UITextField
-                let secondTextField = alertController.textFields![1] as UITextField
+                if firstTextField.text!.contains("http"){
                 let attr = NSMutableAttributedString(string: firstTextField.text!)
-                attr.addAttribute(.link, value: URL(fileURLWithPath: secondTextField.text!) , range: NSRange(location: 0, length:firstTextField.text!.count ))
+                attr.addAttribute(.link, value:  firstTextField.text! , range: NSRange(location: 0, length:firstTextField.text!.count ))
                 self.textView.textStorage.insert(attr, at: self.textView.selectedRange.location)
                 let myAttribute = [ NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14) ]
                            let myAttrString = NSAttributedString(string: "  ", attributes: myAttribute)
@@ -295,24 +298,21 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
                            self.textView.textStorage.insert(myAttrString, at: self.textView.selectedRange.location)
                            newPosition = self.textView.endOfDocument
                            self.textView.selectedTextRange = self.textView.textRange(from: newPosition, to: newPosition)
+                }
+                else {
+                     showMessage(bodyText: "link should contain http:/// or https:///",theme: .warning,presentationStyle: .center, duration: .seconds(seconds: 1.0))
+                }
             })
             let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action : UIAlertAction!) -> Void in })
-            
+            // alertController.addTextField { (textField : UITextField!) -> Void in
+            //     textField.placeholder = "Enter the link"
+            // }
         
             alertController.addAction(saveAction)
             alertController.addAction(cancelAction)
             
             self.present(alertController, animated: false, completion: nil)
     }
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-           // UIApplication.shared.canOpenURL(URL)
-          // let urls : URL? = URL
-          // if let videoURL = urls{
-              UIApplication.shared.open(URL)
-          // }
-           // UIApplication.shared.open(URL, options: [:], completionHandler: nil)
-           return false
-       }
     func findImage(textStorage: NSTextStorage) {
         //this function is used to find number of images present in the textView storage and stored in a images array
         for idx in 0 ..< textStorage.string.count {
@@ -326,6 +326,15 @@ UINavigationControllerDelegate,NSLayoutManagerDelegate,NVActivityIndicatorViewab
         }
         return
     }
+    // func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+    //           // UIApplication.shared.canOpenURL(URL)
+    //          // let urls : URL? = URL
+    //          // if let videoURL = urls{
+    //              UIApplication.shared.open(URL)
+    //          // }
+    //           // UIApplication.shared.open(URL, options: [:], completionHandler: nil)
+    //           return false
+    //       }
     func uploadImagesToServer() -> [String] {
         findImage(textStorage: textView.textStorage) //to count the images and store in array
         storeImgInLocal()  //to store the images in local 'Document' file
@@ -495,13 +504,13 @@ extension KeyViewController {
         if textView.text == textViewPlaceHolder {
             textView.text = nil
         }
-        /*  Added By Ranjeet on 27th March 2020 - starts here  */
+      //  /  Added By Ranjeet on 27th March 2020 - starts here  /
         if #available(iOS 13.0, *) {
             textView.textColor = UIColor.label
         } else {
             // Fallback on earlier versions
         }
-        /*  Added By Ranjeet on 27th March 2020 - ends here  */
+      //  /  Added By Ranjeet on 27th March 2020 - ends here  /
     }
 //    func textViewDidEndEditing(_ textView: UITextView) {
 //        if textView.text.isEmpty {
@@ -516,13 +525,13 @@ extension KeyViewController {
 extension UIImagePickerController {
        open override func viewWillLayoutSubviews() {
           super.viewWillLayoutSubviews()
-        /*  Added By Ranjeet on 27th March 2020 - starts here  */
+      //  /  Added By Ranjeet on 27th March 2020 - starts here  /
         if #available(iOS 13.0, *) {
             self.navigationBar.topItem?.rightBarButtonItem?.tintColor = UIColor.label
         } else {
             // Fallback on earlier versions
         }
-        /*  Added By Ranjeet on 27th March 2020 - ends here  */
+    //    /  Added By Ranjeet on 27th March 2020 - ends here  /
            self.navigationBar.topItem?.rightBarButtonItem?.isEnabled = true
            if (self.navigationController?.navigationBar) != nil {
            navigationController?.navigationBar.barTintColor = UIColor.init(hex: "2DA9EC") // making navigation bar color as blue
@@ -533,8 +542,6 @@ extension UIImagePickerController {
 }
 
 extension KeyViewController : EditImgSender {
-    
-    
     func getImg(EditedImg: UIImage) {
        // self.scribbledImg = scribbleImg
         let MyAttribute = [ NSAttributedString.Key.font:UIFont.systemFont(ofSize: 14) ]

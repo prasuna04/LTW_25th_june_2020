@@ -40,16 +40,17 @@ class NotificationClassesCell: UITableViewCell {
             subscribeUnsubscribeButton.contentEdgeInsets = UIEdgeInsets(top: 10,left: 10,bottom: 10,right: 10)
         }
     }
+    @IBOutlet weak var whiteBoardImage : UIImageView!
     @IBOutlet weak var tutorNameLabel : UILabel!
     
     @IBAction func onClickJoinButton(_ sender : UIButton){
-        
+        cellDelegate?.onAcceptButton(index: sender.tag)
     }
     @IBAction func onClickWhiteBoardButton(_ sender : UIButton){
-        
+        cellDelegate?.onDeclineButton(index: sender.tag) //using this function to call whiteboard.
     }
     @IBAction func onClickUnsubscribeButton(_ sender : UIButton){
-        
+        cellDelegate?.onUnsubscribeButton(index: sender.tag)
     }
     override func awakeFromNib() {
         super.awakeFromNib()

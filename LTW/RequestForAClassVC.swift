@@ -38,7 +38,10 @@ class RequestForAClassVC: UIViewController, NVActivityIndicatorViewable {
     @IBOutlet weak var fromBtn: UIButton!
     @IBOutlet weak var toBtn: UIButton!
     @IBOutlet weak var descrptonTV: UITextView!
-    
+    //added by dk
+    @IBOutlet weak var timeZoneVw : UIView!
+    @IBOutlet weak var timeZoneBtn: UIButton!
+    //added by dk end.
     @IBOutlet weak var descrptonToTimeNSLConstnt: NSLayoutConstraint!
     @IBOutlet weak var descrptnToFlxbleDtTmNSLConstnt: NSLayoutConstraint!
     @IBOutlet weak var submitBtn: UIButton!
@@ -59,6 +62,11 @@ class RequestForAClassVC: UIViewController, NVActivityIndicatorViewable {
     var studentUserID: String!
     var teacherListUserID: String!
     
+    //added by dk.
+    var timeZoneArrayJSON: [JSON]!
+    var timeZoneStringArray: [String] = []
+    var timeZoneID = -1
+    //added by dk, end
     
     
     var isSubjectSelected = false
@@ -116,7 +124,33 @@ class RequestForAClassVC: UIViewController, NVActivityIndicatorViewable {
             /*  Updated By Ranjeet on 26th March 2020  - ends here */
         } //edit by dk ended.
         /* Added By Deepak on 26th Feb 2020 - ends here */
-        
+        //added by dk
+        if let path = Bundle.main.path(forResource: "timezones", ofType: "json") {
+                    do {
+                        let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                       
+                        let jsonarry = try JSON(data: data)
+                        timeZoneArrayJSON = jsonarry.array ?? []
+                        for item in jsonarry.array ?? [] {
+
+                            timeZoneStringArray.append(item["text"].stringValue)
+
+                        }
+                        
+                        
+                    } catch let error {
+                        print("parse error: \(error.localizedDescription)")
+                    }
+                } else {
+                    print("Invalid filename/path.")
+                }
+        if timeZoneBtn.title(for: .normal) == "Select timezone"
+        {
+          self.timeZoneBtn.setTitle(getCurrentTimeZoneText(), for: .normal)
+           self.timeZoneBtn.setTitleColor(UIColor.black, for: .normal)
+         
+         }
+        //added by dk, end
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -133,7 +167,65 @@ class RequestForAClassVC: UIViewController, NVActivityIndicatorViewable {
         self.view.frame.origin.y = 0
         self.addUnderLines()
     }
-    
+    //added by dk, timezone,
+    func getTimeZoneID(timeZoneName: String) -> Int? {
+        
+        let resultArray = timeZoneArrayJSON.filter { json -> Bool in
+            return json["text"].stringValue == timeZoneName
+        }
+        if resultArray.count > 0 {
+            return resultArray[0]["zoneid"].intValue
+        }
+        return nil
+        
+        
+        
+    }
+    func getTimeZoneName(timeZoneID: String) -> String? {
+        
+        
+        let resultArray = timeZoneArrayJSON.filter { json -> Bool in
+            return json["zoneid"].stringValue == timeZoneID
+        }
+        if resultArray.count > 0 {
+            return resultArray[0]["text"].stringValue
+        }
+        return nil
+        
+    }
+    func getCurrentTimeZoneText() -> String {
+        let currentUTC = TimeZone.current.identifier
+        if let path = Bundle.main.path(forResource: "timezones", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                let jsonarry = try JSON(data: data)
+                
+                for item in jsonarry.array ?? [] {
+                    for utcName in item["utc"].array ?? [] {
+                        
+                        if utcName.stringValue == currentUTC {
+                            timeZoneID = item["zoneid"].intValue
+                            return item["text"].stringValue
+                            
+                        }
+                        
+                    }
+                    
+                    
+                }
+                
+                
+            } catch let error {
+                print("parse error: \(error.localizedDescription)")
+            }
+        } else {
+            print("Invalid filename/path.")
+        }
+        
+        
+        return "Select timezone"
+    }
+    //added by dk, end
     
     @IBAction func onSubjectsBtnClick(_ sender: UIButton) {
         
@@ -244,13 +336,15 @@ class RequestForAClassVC: UIViewController, NVActivityIndicatorViewable {
             descrptnToFlxbleDtTmNSLConstnt.constant = 0
             dateVw.isHidden = true
             timeVw.isHidden = true
+            timeZoneVw.isHidden = true
             
         }else {
             isFlexible = false // uncheck
-            descrptnToFlxbleDtTmNSLConstnt.constant = 152
+            descrptnToFlxbleDtTmNSLConstnt.constant = 201
             descrptonToTimeNSLConstnt.constant = 0
             dateVw.isHidden = false
             timeVw.isHidden = false
+            timeZoneVw.isHidden = false
             
         }
     }
@@ -484,6 +578,7 @@ class RequestForAClassVC: UIViewController, NVActivityIndicatorViewable {
             "BoardID": (board.firstIndex(where: {$0 == boardsBtn.title(for: .normal)!})! + 1),
             "SubjectID": (subjects.firstIndex(where: {$0 == subjectBtn.title(for: .normal)!})! + 1),
             "Sub_SubjectID": getSubSubjectID(subSubjectName: subSubjectBtn.title(for: .normal)! ) ?? 0 ,
+            "timezone" : self.timeZoneID,
             "ClassTitle": classTitleTF.text!,
             "IsFlexibleDateTime": isFlexible,
             "StartDate": isFlexible ? "" : classStartDate ,

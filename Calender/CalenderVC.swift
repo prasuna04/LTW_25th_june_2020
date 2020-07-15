@@ -6,6 +6,7 @@
 import UIKit
 import Alamofire
 import EventKit
+import NVActivityIndicatorView
 public enum MyError: Error {
     case Duplicate
     case Insufficient
@@ -14,7 +15,7 @@ public enum MyError: Error {
 
 //@available(iOS 13.0, *) /*  Added By Ranjeet on 27th March 2020 */
 
-class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate , UITableViewDelegate ,UITableViewDataSource {
+class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, MonthViewDelegate , UITableViewDelegate ,UITableViewDataSource, NVActivityIndicatorViewable{
     
     @IBOutlet weak var baseContainerView:UIView!
     var classDict = [LTWEvents]()
@@ -37,22 +38,21 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         self.tableView.tableFooterView = UIView()
         /* remove unwanted cells - ends here */
     }
-        override func viewWillAppear(_ animated: Bool) {
-            navigationItem.rightBarButtonItem?.tintColor = .clear
-            checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
-            dict.removeAll()
-    //        classDict.removeAll()
-    //        taskDict.removeAll()
-            var endPoint = String()
-            let p : Int = Int(personTypeForCalendar!)!
-            if p  == 1 {
-                endPoint = "\(Endpoints.subcribedClassEndPoint)\(userID)?searchText="
-            }
-            else {
-                endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
-            }
-            fetchAPI(with: endPoint)
+    var endPoint : String!
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem?.tintColor = .clear
+        turnButtonsBlue(button: calendarButton)
+        checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
+        dict.removeAll()
+        let p : Int = Int(personTypeForCalendar!)!
+        if p  == 1 {
+            endPoint = "\(Endpoints.subcribedClassEndPoint)\(userID)?searchText="
         }
+        else {
+            endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
+        }
+        fetchAPI(with: endPoint)
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var cellDate = "\(calculatedDate)-\(currentMonthIndex)-\(currentYear)".split(separator: "-")
         for i in 0..<cellDate.count{
@@ -84,7 +84,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     }
     @IBOutlet weak var tasksButton : UIButton! {
         didSet{
-            tasksButton.setTitle("sync", for: .normal)
+            tasksButton.setTitle("Sync", for: .normal)
         }
     }
     @IBOutlet weak var classesButton : UIButton!
@@ -104,50 +104,58 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         turnButtonsBlue(button: calendarButton)
         turnButtonGrey(button: classesButton)
         turnButtonGrey(button: tasksButton)
+        dict.removeAll()
+        classDict.removeAll()
+        fetchAPI(with: endPoint)
     }
     @IBAction func onClickOfTasks(_ sender : UIButton){  //task button works for sync
-            var count = Int()
-            for (key , value) in dict.keys.enumerated(){
-                print ("key \(key)  value \(value)")
-                for i in dict[value]!{
-                    if i is LTWEvents{
-    //                    let startDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.startDate)"
-    //                    let endDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.endDate)"
-    //                    let dateFormatter =  DateFormatter()
-                        //                dateFormatter.dateFormat = dateFormatter.string(from: Date()).contains("am") ? "dd-MM-yyyy h:mm a" : "dd-MM-yyyy h:mm a"
-    //                    dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
-    //                    dateFormatter.locale = Locale.current
-    //                    dateFormatter.timeZone = TimeZone.current
-    //                    let finalstartDate = dateFormatter.date(from: startDateStr)
-    //                    let finalEndDate = DateHelper.getDateObj(from: endDateStr, fromFormat: "dd-MM-yyyy h:mm a")
-    //                    let finalstartDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCStartTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
-                        
-                        let finalstartDate = UTCToLocal(date: (i as! LTWEvents).UTCStartTime)
-    //                    let finalEndDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCEndTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
-                        let finalEndDate = UTCToLocal(date: (i as! LTWEvents).UTCEndTime)
-                        let description =  i is LTWEvents ? "class on topic \((i as! LTWEvents).topic)" : ""
-                        addEventToCalendar(title: i.tittle , description: description , startDate: finalstartDate!, endDate: finalEndDate!, completion: {(success , error) in
-                            if success && error == nil {
-                                count += 1
-                            }
-                        })
-                        print("start at \(String(describing: finalstartDate))   and end \(String(describing: finalEndDate))")
-                    }
-                }
+        
+        var count = Int()
+        for (key , value) in dict.keys.enumerated(){
+            print ("key \(key)  value \(value)")
+            for i in dict[value]!{
+                if i is LTWEvents{
+                    //                    let startDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.startDate)"
+                    //                    let endDateStr = "\(i.key/*.replacingOccurrences(of: "-", with: "/")*/) \(i.endDate)"
+                    //                    let dateFormatter =  DateFormatter()
+                    //                dateFormatter.dateFormat = dateFormatter.string(from: Date()).contains("am") ? "dd-MM-yyyy h:mm a" : "dd-MM-yyyy h:mm a"
+                    //                    dateFormatter.dateFormat = "dd-MM-yyyy h:mm a"
+                    //                    dateFormatter.locale = Locale.current
+                    //                    dateFormatter.timeZone = TimeZone.current
+                    //                    let finalstartDate = dateFormatter.date(from: startDateStr)
+                    //                    let finalEndDate = DateHelper.getDateObj(from: endDateStr, fromFormat: "dd-MM-yyyy h:mm a")
+                    //                    let finalstartDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCStartTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
                     
+                    let finalstartDate = UTCToLocal(date: (i as! LTWEvents).UTCStartTime)
+                    //                    let finalEndDate = dateFormatter.date(from: DateHelper.localToUTC(date: (i as! LTWEvents).UTCEndTime, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy h:mm a"))
+                    let finalEndDate = UTCToLocal(date: (i as! LTWEvents).UTCEndTime)
+                    let description =  i is LTWEvents ? "class on topic \((i as! LTWEvents).topic)" : ""
+                    addEventToCalendar(title: i.tittle , description: description , startDate: finalstartDate!, endDate: finalEndDate!, completion: {(success , error) in
+                        if success && error == nil {
+                            count += 1
+                        }
+                    })
+                    print("start at \(String(describing: finalstartDate))   and end \(String(describing: finalEndDate))")
+                }
             }
-            print(count)
-            self.calender.reloadData()
+            
         }
+        print(count)
+        self.calender.reloadData()
+    }
     @IBAction func onClickOfNotificationClasses(_ sender : UIButton) {
         baseContainerView.isHidden = false
         turnButtonsBlue(button: classesButton)
         turnButtonGrey(button: calendarButton)
+        turnButtonGrey(button: tasksButton)
         let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
         let classesVC = storyBoard.instantiateViewController(withIdentifier: "NotificationClassesVC") as! NotificationClassesVC
         classesVC.classDict = classDict
+//        classesVC.view.translatesAutoresizingMaskIntoConstraints = false
+        classesVC.view.frame = self.baseContainerView.bounds
         self.baseContainerView.addSubview(classesVC.view)
         self.addChild(classesVC)
+        classesVC.didMove(toParent: self)
         self.view.bringSubviewToFront(baseContainerView)
     }
     
@@ -165,7 +173,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                     return
 
                     }else if let url = NSURL(string:dict[selectedKey]![sender.tag].hostUrl){
-                    UIApplication.shared.openURL(url as URL)
+                    UIApplication.shared.open(url as URL)
 
 
                     }
@@ -181,7 +189,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             return
 
             }else if let url = NSURL(string:dict[selectedKey]![sender.tag].hostUrl){
-            UIApplication.shared.openURL(url as URL)
+            UIApplication.shared.open(url as URL)
 
             }
             print("hostURL: \(dict[selectedKey]![sender.tag].hostUrl)")
@@ -593,7 +601,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         case EKAuthorizationStatus.notDetermined:
             // This happens on first-run
 //            requestAccessToCalendar()
-            moveToSettings(enterhereWhichSettingControlYouWant: enterhereWhichSettingControlYouWant)
+//            moveToSettings(enterhereWhichSettingControlYouWant: enterhereWhichSettingControlYouWant)
             print("not determind")
         case EKAuthorizationStatus.authorized:
             // Things are in line with being able to show the calendars in the table view
@@ -644,7 +652,9 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     }
     func fetchAPI(with str : String){
         let url = URL(string:str)
+        startAnimating(type:.lineScale,color: UIColor.init(hex: "2DA9EC"))
         Alamofire.request(url!).responseJSON{response in
+            self.stopAnimating()
             let result = response.result.value as? Dictionary<String,Any>
 //             print("DK",result)
             if result!["message"] as! String == "Success" && result!["error"] as! Bool == false {
@@ -676,7 +686,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
 //                    print("Deepak",startTime)
 //                    print("Deepak",endTime)
                    // let date = self.serverToLocal(date: items["UTC_ClassDatetime"] as! String)//DateHelper.localToUTC(date: items["date"] as! String, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "dd-MM-yyyy")
-                    let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String, teacherName: items["fullname"] as! String)
+                    let calederEventObj = LTWEvents(title: items["title"] as? String ?? "" , topic: subjects[(items["SubjectID"] as! Int)-1] , grade: items["Grades"] as? String ?? "", startDate:  startTime , endDate : endTime , key : date, classId: items["Class_id"] as! Int, hostUrl: items["hostURL"] as? String ?? "", UTCStartTime : items["UTC_ClassDatetime"] as! String , UTCEndTime : items["UTC_ClassEndtime"] as! String, teacherName: items["fullname"] as? String ?? "")
                     
                     self.classDict.append(calederEventObj)
                     
@@ -752,13 +762,13 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         }
     }
     func turnButtonsBlue(button : UIButton){
-        button.tintColor = UIColor.init(hex: "2DA9EC")
+//        button.tintColor = UIColor.init(hex: "2DA9EC")
         button.setTitleColor(.init(hex: "2DA9EC"), for: .normal)
         button.isUserInteractionEnabled = false //here
         
     }
     func turnButtonGrey(button : UIButton){
-        button.tintColor = UIColor.init(hex: "3C3C43")
+//        button.tintColor = UIColor.init(hex: "3C3C43")
         button.setTitleColor(.init(hex: "3C3C43"), for: .normal)
         button.isUserInteractionEnabled = true
     }

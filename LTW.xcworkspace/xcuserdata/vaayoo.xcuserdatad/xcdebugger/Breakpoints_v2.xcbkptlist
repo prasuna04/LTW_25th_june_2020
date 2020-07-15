@@ -37,7 +37,7 @@
             <Locations>
                <Location
                   uuid = "13A39892-BC0F-41ED-A27A-912944D79E0A - 122c93dafe1e2b24"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "LearnTeachWorld.GroupInfoViewController.exitgroupBtn(sender: __C.UIButton) -&gt; ()"
@@ -52,7 +52,7 @@
                </Location>
                <Location
                   uuid = "13A39892-BC0F-41ED-A27A-912944D79E0A - 4a4e65ad01fe674"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #2 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in LearnTeachWorld.GroupInfoViewController.exitgroupBtn(sender: __C.UIButton) -&gt; ()"
@@ -224,8 +224,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "499"
             endingLineNumber = "499"
-            landmarkName = "handleRotate(recognizer:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -248,7 +248,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C6291094-D933-4210-A6B6-40809852EB48"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/SignInVC.swift"
@@ -261,7 +261,7 @@
             <Locations>
                <Location
                   uuid = "C6291094-D933-4210-A6B6-40809852EB48 - b0720cf8ccd0d290"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (LearnTeachWorld.Result) -&gt; () in LearnTeachWorld.SignInVC.(hitServer in _B7E59C12AAAA68707E4B2CD9B802B0E8)(params: Swift.Dictionary&lt;Swift.String, Any&gt;, action: Swift.String) -&gt; ()"
@@ -272,11 +272,11 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "148"
                   endingLineNumber = "148"
-                  offsetFromSymbolStart = "243">
+                  offsetFromSymbolStart = "176">
                </Location>
                <Location
                   uuid = "C6291094-D933-4210-A6B6-40809852EB48 - b0720cf8ccd0d290"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (LearnTeachWorld.Result) -&gt; () in LearnTeachWorld.SignInVC.(hitServer in _B7E59C12AAAA68707E4B2CD9B802B0E8)(params: Swift.Dictionary&lt;Swift.String, Any&gt;, action: Swift.String) -&gt; ()"
@@ -287,11 +287,11 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "148"
                   endingLineNumber = "148"
-                  offsetFromSymbolStart = "497">
+                  offsetFromSymbolStart = "364">
                </Location>
                <Location
                   uuid = "C6291094-D933-4210-A6B6-40809852EB48 - b0720cf8ccd0d290"
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (LearnTeachWorld.Result) -&gt; () in LearnTeachWorld.SignInVC.(hitServer in _B7E59C12AAAA68707E4B2CD9B802B0E8)(params: Swift.Dictionary&lt;Swift.String, Any&gt;, action: Swift.String) -&gt; ()"
@@ -302,7 +302,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "148"
                   endingLineNumber = "148"
-                  offsetFromSymbolStart = "8150">
+                  offsetFromSymbolStart = "6460">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -311,7 +311,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "75C26475-06F8-4795-B913-6B4B45102CD0"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/HomeVC.swift"
@@ -319,15 +319,15 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "830"
             endingLineNumber = "830"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BD3F3EE8-C6C8-4CD0-AB8E-0F7538799154"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/SceneDelegate.swift"
@@ -343,7 +343,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F59BCF02-FEE8-4E9B-B224-FEA7E906BCA1"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/SceneDelegate.swift"
@@ -357,7 +357,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "D2152C89-74B1-400D-868B-FAB05C6F6D81"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/SceneDelegate.swift"
@@ -746,7 +746,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "88">
+                  offsetFromSymbolStart = "128">
                </Location>
                <Location
                   uuid = "80AB1F5D-7644-4271-BF3E-9F82E6B3B8F8 - e5f43c7e84ffa359"
@@ -761,7 +761,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "155">
+                  offsetFromSymbolStart = "200">
                </Location>
                <Location
                   uuid = "80AB1F5D-7644-4271-BF3E-9F82E6B3B8F8 - c1ecc65980c81b68"
@@ -776,7 +776,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "65">
+                  offsetFromSymbolStart = "64">
                </Location>
                <Location
                   uuid = "80AB1F5D-7644-4271-BF3E-9F82E6B3B8F8 - 6dc05f34b5827900"
@@ -791,7 +791,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "80">
+                  offsetFromSymbolStart = "76">
                </Location>
                <Location
                   uuid = "80AB1F5D-7644-4271-BF3E-9F82E6B3B8F8 - bd4051226da6f794"
@@ -806,7 +806,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "1271">
+                  offsetFromSymbolStart = "924">
                </Location>
                <Location
                   uuid = "80AB1F5D-7644-4271-BF3E-9F82E6B3B8F8 - 68e923fcec7fc752"
@@ -821,7 +821,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
                   endingLineNumber = "23"
-                  offsetFromSymbolStart = "1212">
+                  offsetFromSymbolStart = "872">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -894,7 +894,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "BFFBB3EE-1990-4E26-8C1B-1FA1E3723FB2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/AppDelegate.swift"
@@ -926,7 +926,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "C542EB7D-7367-43AE-83F9-67AEEA2E8806"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/AppDelegate.swift"
@@ -998,7 +998,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "11"
                   endingLineNumber = "11"
-                  offsetFromSymbolStart = "441">
+                  offsetFromSymbolStart = "348">
                </Location>
                <Location
                   uuid = "63E1D5DE-A935-4BBF-86EA-DE0DE43384F4 - d0fea778b4722530"
@@ -1013,7 +1013,7 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "11"
                   endingLineNumber = "11"
-                  offsetFromSymbolStart = "382">
+                  offsetFromSymbolStart = "296">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1076,8 +1076,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1092,8 +1092,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "549"
-            endingLineNumber = "549"
+            startingLineNumber = "557"
+            endingLineNumber = "557"
             landmarkName = "navigationRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1108,8 +1108,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "570"
-            endingLineNumber = "570"
+            startingLineNumber = "578"
+            endingLineNumber = "578"
             landmarkName = "navigationRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1124,8 +1124,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "555"
-            endingLineNumber = "555"
+            startingLineNumber = "563"
+            endingLineNumber = "563"
             landmarkName = "navigationRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1140,8 +1140,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "592"
-            endingLineNumber = "592"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
             landmarkName = "checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1188,41 +1188,9 @@
             filePath = "LTW/MyClassVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2325"
-            endingLineNumber = "2325"
+            startingLineNumber = "2310"
+            endingLineNumber = "2310"
             landmarkName = "getCurrentTimeZoneName()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8D6BFD2B-2C40-4039-95A3-D9066BA38BEB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Calender/NotificationClassesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "joinButton(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E8C01922-9640-4A3A-B39A-0B4A1134C443"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LTW/KeyViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
-            landmarkName = "onBarButtonPressed(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1236,8 +1204,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "682"
-            endingLineNumber = "682"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
             landmarkName = "fetchAPI(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1252,25 +1220,9 @@
             filePath = "Calender/NotificationClassesVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "848DAC41-0F45-4BB4-84BB-8C4DFEA38E1D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Calender/NotificationClassesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "whiteBoardButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1284,41 +1236,9 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "652"
-            endingLineNumber = "652"
+            startingLineNumber = "662"
+            endingLineNumber = "662"
             landmarkName = "fetchAPI(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F85F7878-1AEB-4B61-9FFB-BAA595DC474C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LTW/KeyViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
-            landmarkName = "textView(_:shouldInteractWith:in:interaction:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A35495CE-99C9-4F8F-BBD8-A4F1F0874EAB"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Calender/NotificationClassesVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "hitServer(params:endPoint:action:httpMethod:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1332,8 +1252,8 @@
             filePath = "Calender/NotificationClassesVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "hitServer(params:endPoint:action:httpMethod:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1341,124 +1261,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0"
-            shouldBeEnabled = "Yes"
+            uuid = "28D1AF10-2BA1-4D4C-AC87-4474B45B7F3A"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Calender/NotificationClassesVC.swift"
+            filePath = "LTW/AnswersVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "NotificationClassesVC"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0 - 8dd18ef69250a123"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnTeachWorld.NotificationClassesVC.unsubSuccess.getter : Swift.Optional&lt;Swift.Int&gt;"
-                  moduleName = "LearnTeachWorld"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaayoo/Desktop/LTW_25th_june_2020/Calender/NotificationClassesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "124">
-               </Location>
-               <Location
-                  uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0 - 754d540738163ddf"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnTeachWorld.NotificationClassesVC.unsubSuccess.setter : Swift.Optional&lt;Swift.Int&gt;"
-                  moduleName = "LearnTeachWorld"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaayoo/Desktop/LTW_25th_june_2020/Calender/NotificationClassesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "139">
-               </Location>
-               <Location
-                  uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0 - 4dad756840ed122e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnTeachWorld.NotificationClassesVC.unsubSuccess.modify : Swift.Optional&lt;Swift.Int&gt;"
-                  moduleName = "LearnTeachWorld"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaayoo/Desktop/LTW_25th_june_2020/Calender/NotificationClassesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "18">
-               </Location>
-               <Location
-                  uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0 - 7b036e514dfe5d51"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnTeachWorld.NotificationClassesVC.unsubSuccess.modify : Swift.Optional&lt;Swift.Int&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "LearnTeachWorld"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaayoo/Desktop/LTW_25th_june_2020/Calender/NotificationClassesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0 - ddfd837b9b3841f3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnTeachWorld.NotificationClassesVC.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; LearnTeachWorld.NotificationClassesVC"
-                  moduleName = "LearnTeachWorld"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaayoo/Desktop/LTW_25th_june_2020/Calender/NotificationClassesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "1329">
-               </Location>
-               <Location
-                  uuid = "34689A78-DFD5-419D-89BA-839FB43D19B0 - 6aeb3ad65cb339fc"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnTeachWorld.NotificationClassesVC.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;LearnTeachWorld.NotificationClassesVC&gt;"
-                  moduleName = "LearnTeachWorld"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/vaayoo/Desktop/LTW_25th_june_2020/Calender/NotificationClassesVC.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "1270">
-               </Location>
-            </Locations>
+            startingLineNumber = "352"
+            endingLineNumber = "352"
+            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "28D1AF10-2BA1-4D4C-AC87-4474B45B7F3A"
+            uuid = "85C6ADE4-6C28-4802-8EA8-1D26596A974E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calender/CalenderVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "onClickOfCalendar(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EEAF7A1F-9E6E-4473-B96E-0592DF3E99E2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LTW/HomeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "437"
+            endingLineNumber = "437"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A0B16081-207C-4C6D-A520-3D67E2B2DB38"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LTW/AnswersVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "viewWillDisappear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9F98041-9429-41AA-8E4C-B396CC736DE8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LTW/AnswersVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "344"
-            endingLineNumber = "344"
-            landmarkName = "webView(_:decidePolicyFor:decisionHandler:)"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC6761CB-817B-41E6-8473-0735A3174903"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LTW/AnswersVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "appMovedToBackground()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5B0F153-4BD0-49F2-9427-802812920E73"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calender/NotificationClassesVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0DAECB43-DBAA-4BEE-B131-81A1736F2CA4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calender/NotificationClassesVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
