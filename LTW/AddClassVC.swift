@@ -39,8 +39,6 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
     @IBOutlet weak var submitBtnTopConst: NSLayoutConstraint!
     
     @IBOutlet weak var startDateTopConst: NSLayoutConstraint!
-      @IBOutlet weak var GradeTopConst: NSLayoutConstraint!
-    
     //  @IBOutlet weak var gradeBtn: UIButton!
     //prasuna added
     @IBOutlet weak var tagsBtn: UIButton!
@@ -78,6 +76,8 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
     
     
     var number_Of_Attendees : String! /* For copy of class */
+    var isUserEditingClass  = false /* For providing editing option even number_Of_Attendees > 0 */
+ 
     
     //For toTime validation
     var fromHourString : String!
@@ -111,22 +111,31 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
         searchEmailTextfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         navigationItem.title = "Create New Class"
-      //  startDateTopConst.constant = 10//commented by yasodha
+      //  startDateTopConst.constant = 10
         submitBtnTopConst.constant = 10
-       // GradeTopConst.constant = 10//commented by yasodha
         
         
-        
-        
-        if let path = Bundle.main.path(forResource: "timezone", ofType: "json") {
+        if let path = Bundle.main.path(forResource: "timezones", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                let json = try JSON(data: data)
-                timeZoneArrayJSON = json["TimeZone"].arrayValue
-                print("timeZoneArrayJSON:\(timeZoneArrayJSON!)")
-                for jsonObj in timeZoneArrayJSON {
-                    timeZoneStringArray.append(jsonObj["_text"].stringValue)
+//                 let json = try JSON(data: data)
+//
+//                                timeZoneArrayJSON = json["TimeZone"].arrayValue
+//                                print("timeZoneArrayJSON:\(timeZoneArrayJSON!)")
+//                                for jsonObj in timeZoneArrayJSON {
+//                                    timeZoneStringArray.append(jsonObj["text"].stringValue)
+//                                }
+//
+               
+                let jsonarry = try JSON(data: data)
+                timeZoneArrayJSON = jsonarry.array ?? []
+                for item in jsonarry.array ?? [] {
+
+                    timeZoneStringArray.append(item["text"].stringValue)
+
                 }
+                
+                
             } catch let error {
                 print("parse error: \(error.localizedDescription)")
             }
@@ -141,7 +150,10 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
             navigationItem.title = "Edit Class"
             testModeToggle.isUserInteractionEnabled = true
             /* Added By Yashoda on 4th March 2020 - from here */
-            if  number_Of_Attendees == "0"{
+           // if  number_Of_Attendees == "0"{
+            
+            if isUserEditingClass == true{
+                
                 submitBtn.setTitle("  Update Class  ", for: .normal)
                 
             }else{
@@ -172,6 +184,16 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
         tagListView.delegate = self
         arrTagList = ["1st", "2nd", "3rd","4th", "5th","6th","7th","8th","9th", "10th","11th","12th", "UnderGraduates","Graduates"]
         arrTag = Array(repeating: 0, count: arrTagList.count)
+        
+        
+        //Adding current time zone by default
+       if timeZoneBtn.title(for: .normal) == "Select timezone"
+       {
+         self.timeZoneBtn.setTitle(getCurrentTimeZoneText(), for: .normal)
+          self.timeZoneBtn.setTitleColor(UIColor.black, for: .normal)
+        
+        }
+        
         
     }
     
@@ -251,23 +273,43 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
         // cell.add.setImage(UIImage(named: "unchecked"), for: .normal)
     }
     func getTimeZoneID(timeZoneName: String) -> Int? {
-        let resultArray = timeZoneArrayJSON.filter { json -> Bool in
-            return json["_text"].stringValue == timeZoneName
-        }
-        if resultArray.count > 0 {
-            return resultArray[0]["_zoneid"].intValue
-        }
-        return nil
+//        let resultArray = timeZoneArrayJSON.filter { json -> Bool in
+//            return json["text"].stringValue == timeZoneName
+//        }
+//        if resultArray.count > 0 {
+//            return resultArray[0]["zoneid"].intValue
+//        }
+//        return nil
+        
+                let resultArray = timeZoneArrayJSON.filter { json -> Bool in
+                    return json["text"].stringValue == timeZoneName
+                }
+                if resultArray.count > 0 {
+                    return resultArray[0]["zoneid"].intValue
+                }
+                return nil
+        
+        
+        
     }
     func getTimeZoneName(timeZoneID: String) -> String? {
         
-        let resultArray = timeZoneArrayJSON.filter { json -> Bool in
-            return json["_zoneid"].stringValue == timeZoneID
-        }
-        if resultArray.count > 0 {
-            return resultArray[0]["_text"].stringValue
-        }
-        return nil
+//        let resultArray = timeZoneArrayJSON.filter { json -> Bool in
+//            return json["zoneid"].stringValue == timeZoneID
+//        }
+//        if resultArray.count > 0 {
+//            return resultArray[0]["text"].stringValue
+//        }
+//        return nil
+        
+                let resultArray = timeZoneArrayJSON.filter { json -> Bool in
+                    return json["zoneid"].stringValue == timeZoneID
+                }
+                if resultArray.count > 0 {
+                    return resultArray[0]["text"].stringValue
+                }
+                return nil
+        
     }
     @IBAction func onTestModeToggle(_ sender: UISwitch) {
         let newTestMode = testModeLbl.text == "Public" ? "Private" : "Public"
@@ -308,6 +350,10 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
         if isExpiredClass {
             isFromExpiredClass = "yes"
         }
+    //   println(TheButton.titleLabel?.text)
+        
+        
+        
     }
     
     
@@ -508,7 +554,7 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
         let popup = sb.instantiateInitialViewController()! as! DatePopupViewControllerForCreateRequestClassAndRequestForAClass /*  Updated By Ranjeet on 23rd March 2020 */
         popup.showTimePicker = true
         // popup.selectedClassDate = testStartDate!//commented by yasodha 16/4/2020
-        popup.selectedClassDate = fromTimingDate!  /* ADded By Yashoda on 16th April 2020 */ 
+        popup.selectedClassDate = fromTimingDate!  /* ADded By Yashoda on 16th April 2020 */
         popup.toTimeSelected = true /* ADded By Yashoda on 16th April 2020 */
         popup.onSave = {[unowned self] (date) in
             print("Date = \(date)")
@@ -592,6 +638,13 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
             showMessage(bodyText: "Enter Class End Time", theme: .warning) /*  Updated By Ranjeet on 18th March 2020 */
             return
         }
+        
+         if timeZoneBtn.title(for: .normal) == "Select timezone"{
+                showMessage(bodyText: "Select timezone", theme: .warning)
+                return
+               }
+        
+        
         
         if fromTimingDate != nil && toTimingDate != nil {
             
@@ -692,6 +745,13 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
 //            showMessage(bodyText: "Number of attendees can not be greater than 20.",theme: .warning)
 //            return
 //        }
+        
+        
+        
+        
+        
+        
+        
         if isExpiredClass == true
         {
             /************************Commented by yasodha ********************************/
@@ -758,7 +818,7 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
             }
 
             if (todayHour == frmHour && todayMinute > frmMinute) || (todayHour > frmHour){
-            showMessage(bodyText: "Time should be greater than current time",theme: .warning) /* Updated By Ranjeet on 18th March 2020 */
+            showMessage(bodyText: "Time should be grater than current time",theme: .warning) /* Updated By Ranjeet on 18th March 2020 */
             return
             }
 
@@ -867,7 +927,10 @@ class AddClassVC: UIViewController,NVActivityIndicatorViewable {
                     isFromExpiredClass = "yes"
                     hitServer(params: params, endPoint: Endpoints.createClass, httpMethod: .post, action: "create_class")
                   //  isExpiredClass = false
-                }else if number_Of_Attendees == "0" {//updated by yasodha
+                //}else if number_Of_Attendees == "0" {//updated by yasodha
+                }else if isUserEditingClass == true {//updated by yasodha
+                    
+                    
                     hitServer(params: params, endPoint: Endpoints.editClassEndPoint + classID! + "/" + userId!, httpMethod: .post, action: "update_class")
                     
                 }else{
@@ -1001,8 +1064,18 @@ extension AddClassVC {
                         
                         /*Added by yasodha 6/3/2020 starts here */
                         
+                        //timezone = 4
+                           
                         
-                        if self.number_Of_Attendees == "0" ||  self.isFromExpiredClass == "yes" {//updated by yasodha
+                        //self.getTimeZoneName(timeZoneID:classDetailJSON["timezone"].stringValue)
+                        
+                        self.timeZoneBtn.setTitle(String(describing:  self.getTimeZoneName(timeZoneID:classDetailJSON["timezone"].stringValue)! ), for: .normal)
+                        self.timeZoneBtn.setTitleColor(UIColor.black, for: .normal) /* Added By Ranjeet on 12th April 2020 */
+                        
+                        
+                       // if self.number_Of_Attendees == "0" ||  self.isFromExpiredClass == "yes" {//updated by yasodha
+                        if self.isUserEditingClass == true ||  self.isFromExpiredClass == "yes" {//updated by yasodha
+                          
                             self.isFromExpiredClass = ""
                             
                             self.startTestBtn.setTitle(DateHelper.localToUTC(date: classDetailJSON["date"].stringValue, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "MM/dd/yyyy"), for: .normal)
@@ -1208,4 +1281,43 @@ extension AddClassVC : TagListViewDelegate {
         arrTag[index!] = 0
         // if teacher {} else {dismiss taglistview same as on close click} /* don't delete this line, future might reuse to strict to pass more than one tags to student and parent & in case of teacher will allow to pass multiple tags. */
     }
+    
 }
+
+extension AddClassVC {
+
+  func getCurrentTimeZoneText() -> String {
+      let currentUTC = TimeZone.current.identifier
+      if let path = Bundle.main.path(forResource: "timezones", ofType: "json") {
+                     do {
+                         let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                         let jsonarry = try JSON(data: data)
+                      
+                       for item in jsonarry.array ?? [] {
+                        for utcName in item["utc"].array ?? [] {
+                            
+                            if utcName.stringValue == currentUTC {
+                               timeZoneID = item["zoneid"].intValue
+                                return item["text"].stringValue
+                                
+                            }
+                            
+                        }
+                        
+                          
+                        }
+                      
+    
+                     } catch let error {
+                         print("parse error: \(error.localizedDescription)")
+                     }
+                 } else {
+                     print("Invalid filename/path.")
+                 }
+            
+    
+            return "Select timezone"
+}
+
+}
+

@@ -5,8 +5,9 @@
 
 import UIKit
 import Alamofire
+import NVActivityIndicatorView
 
-class ClassDeliveredOrAttendedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, GroupCell {
+class ClassDeliveredOrAttendedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, GroupCell, NVActivityIndicatorViewable {
     
     var studentClassesEndPoint : String!
     var tutorClassesEndPoint : String!
@@ -173,20 +174,20 @@ class ClassDeliveredOrAttendedVC: UIViewController, UITableViewDataSource, UITab
         if NetworkReachabilityManager()?.isReachable ?? false {
             let endPoint = Endpoints.unsubscribeClassEndPoint + userId! + "/" + "\(cellDatas[index].classId)"
             print(endPoint)
-            
+            startAnimating(type:.lineScale,color: UIColor.init(hex: "2DA9EC"))
             Alamofire.request(endPoint).responseJSON { response in
-                print(response.request!)   // original url request
-                print(response.response!) // http url response
-                print(response.result)  // response serialization result
-                if let json = response.result.value {
-                    print("JSON: \(json)") // serialized json response
-                }
+                self.stopAnimating()
+                let json = response.result.value as? [String: Any]
                 if "\(response.result)" == "SUCCESS"{
-                    showMessage(bodyText: "Class Unsubscribed",theme: .success)
-                    self.cellDatas.removeAll()
-                    self.AttendedOrDeliveredClassTableView.reloadData()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.hitServer(globalListEndPoint: self.globalListEndPoint)
+                    if json!["error"] as? Bool  == false {
+                        showMessage(bodyText: "Unsubscribed Successfully!",theme: .success)
+                        self.cellDatas.removeAll()
+                        self.AttendedOrDeliveredClassTableView.reloadData()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.hitServer(globalListEndPoint: self.globalListEndPoint)
+                        }
+                    }else{
+                        showMessage(bodyText: json!["message"] as! String,theme: .error)
                     }
                 }
                 else {

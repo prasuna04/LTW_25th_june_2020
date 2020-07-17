@@ -37,12 +37,6 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         /* remove unwanted cells - starts here */
         self.tableView.tableFooterView = UIView()
         /* remove unwanted cells - ends here */
-    }
-    var endPoint : String!
-    override func viewWillAppear(_ animated: Bool) {
-        navigationItem.rightBarButtonItem?.tintColor = .clear
-        checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
-        dict.removeAll()
         let p : Int = Int(personTypeForCalendar!)!
         if p  == 1 {
             endPoint = "\(Endpoints.subcribedClassEndPoint)\(userID)?searchText="
@@ -50,8 +44,27 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
         else {
             endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
         }
-        classDict.removeAll()
         fetchAPI(with: endPoint)
+        
+    }
+    var endPoint : String!
+    override func viewWillAppear(_ animated: Bool) {
+        navigationItem.rightBarButtonItem?.tintColor = .clear
+        checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant: "Calender")
+        
+        let p : Int = Int(personTypeForCalendar!)!
+        if p  == 1 {
+            endPoint = "\(Endpoints.subcribedClassEndPoint)\(userID)?searchText="
+        }
+        else {
+            endPoint = "\(Endpoints.myClassesEndPoint)\(userID)?searchText="
+        }
+        if self.navigationController?.viewControllers.previous is NotificationClassesVC {
+            classDict.removeAll()
+            dict.removeAll()
+            fetchAPI(with: endPoint)
+        }
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var cellDate = "\(calculatedDate)-\(currentMonthIndex)-\(currentYear)".split(separator: "-")
@@ -85,15 +98,15 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
     @IBAction func onClickOfCalendar(_ sender: UIButton) {
         calendarButton.isSelected = true
         classesButton.isSelected = false
-        if self.children.count > 0{
-            let viewControllers:[UIViewController] = self.children
-            for viewContoller in viewControllers{
-                print("DEEPak",viewControllers)
-                viewContoller.willMove(toParent: nil)
-                viewContoller.view.removeFromSuperview()
-                viewContoller.removeFromParent()
-            }
-        }
+//        if self.children.count > 0{
+//            let viewControllers:[UIViewController] = self.children
+//            for viewContoller in viewControllers{
+//                print("DEEPak",viewControllers)
+//                viewContoller.willMove(toParent: nil)
+//                viewContoller.view.removeFromSuperview()
+//                viewContoller.removeFromParent()
+//            }
+//        }
         baseContainerView.isHidden = true
         dict.removeAll()
         classDict.removeAll()
@@ -203,7 +216,7 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
                               return
                           }
         
-               self.title = "Call"
+               self.title = "Calendar"
                self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
               // self.navigationItem.rightBarButtonItem?.isEnabled = false
                
@@ -244,8 +257,15 @@ class CalenderVC: UIViewController,UICollectionViewDelegate, UICollectionViewDat
             datef.dateFormat = "dd-MM-YYYY"
             print( dict[date]![indexPath.row].key == datef.string(from: Date()))
             if dict[date]![indexPath.row].key == datef.string(from: Date()) {
-                datef.dateFormat = "h:mm a"
-                if minutes(from: datef.date(from:  dict[date]![indexPath.row].startDate)!) >= -30 && minutes(from: datef.date(from:  dict[date]![indexPath.row].startDate)!) <= 30 {
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.dateFormat = "h:mm a"
+                let date = dateFormatter.date(from: dict[date]![indexPath.row].startDate)
+                dateFormatter.dateFormat = "HH:mm"
+                let date24 = dateFormatter.string(from: date!)
+                print(date24)
+//                if minutes(from: datef.date(from:  dict[date]![indexPath.row].startDate)!) >= -30 && minutes(from: datef.date(from:  dict[date]![indexPath.row].startDate)!) <= 30 {
+                if minutes(from: date!) >= -30 && minutes(from: date!) <= 30 {
                     cell?.joinBtn.isUserInteractionEnabled = true
                     cell?.joinBtn.backgroundColor = UIColor.init(hex:"60A200")
                     

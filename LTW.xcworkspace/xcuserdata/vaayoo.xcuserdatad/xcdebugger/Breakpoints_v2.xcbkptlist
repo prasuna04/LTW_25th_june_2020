@@ -222,8 +222,8 @@
             filePath = "LTW/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "499"
-            endingLineNumber = "499"
+            startingLineNumber = "507"
+            endingLineNumber = "507"
             landmarkName = "handleRotate(recognizer:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -317,8 +317,8 @@
             filePath = "LTW/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "830"
-            endingLineNumber = "830"
+            startingLineNumber = "838"
+            endingLineNumber = "838"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1069,22 +1069,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C47710E4-3FEA-4D7B-A2B6-9D12480FA25F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Calender/CalenderVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "D00C8E67-57AB-40C4-9BF6-C32587E22AD1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1092,8 +1076,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "547"
-            endingLineNumber = "547"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "navigationRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1108,8 +1092,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "568"
-            endingLineNumber = "568"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
             landmarkName = "navigationRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1124,8 +1108,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
+            startingLineNumber = "573"
+            endingLineNumber = "573"
             landmarkName = "navigationRight(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1140,8 +1124,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "590"
-            endingLineNumber = "590"
+            startingLineNumber = "610"
+            endingLineNumber = "610"
             landmarkName = "checkCalendarAuthorizationStatus(enterhereWhichSettingControlYouWant:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1204,8 +1188,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "682"
-            endingLineNumber = "682"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
             landmarkName = "fetchAPI(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1236,8 +1220,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "652"
-            endingLineNumber = "652"
+            startingLineNumber = "672"
+            endingLineNumber = "672"
             landmarkName = "fetchAPI(with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1284,8 +1268,8 @@
             filePath = "Calender/CalenderVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "onClickOfCalendar(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1300,8 +1284,8 @@
             filePath = "LTW/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "437"
-            endingLineNumber = "437"
+            startingLineNumber = "445"
+            endingLineNumber = "445"
             landmarkName = "getNormalEndPoint()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1412,8 +1396,8 @@
             filePath = "LTW/HomeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1134"
-            endingLineNumber = "1134"
+            startingLineNumber = "1142"
+            endingLineNumber = "1142"
             landmarkName = "performSearch()"
             landmarkType = "7">
          </BreakpointContent>

@@ -25,7 +25,7 @@ enum FilterEnum: String {
     case Grade = "Grade"
 }
 class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISearchControllerDelegate,UISearchBarDelegate, NVActivityIndicatorViewable,MFMailComposeViewControllerDelegate,notification, UIPopoverPresentationControllerDelegate{ /* Added notification  By Chandra on 3rd Jan 2020 */
-     /* Added  UIPopoverPresentationControllerDelegate By Veeresh on 25th Feb 2020 */
+    /* Added  UIPopoverPresentationControllerDelegate By Veeresh on 25th Feb 2020 */
     
     
     /* Added By Chandra on 3rd Jan 2020 - starts here */
@@ -80,7 +80,7 @@ class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISear
     
     @IBOutlet weak var moveUpHeight: NSLayoutConstraint!
     @IBAction func onUpBtnPressed(_ sender : UIButton){
-    tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top , animated: true)
+        tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top , animated: true)
     }
     
     @IBOutlet weak var askqustnBtn: UIButton!{
@@ -97,7 +97,7 @@ class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISear
             filterQstnBtn.layer.shadowColor = UIColor.gray.cgColor
             filterQstnBtn.layer.shadowOffset = CGSize(width: 5, height: 5)
             filterQstnBtn.layer.shadowRadius = 5
-           // filterQstnBtn.layer.shadowOpacity = 1.0
+            // filterQstnBtn.layer.shadowOpacity = 1.0
         }
     }
     
@@ -133,7 +133,7 @@ class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISear
     var deletedIndexPath: IndexPath?
     var isEmpty: Bool? /* if answers not available in Home Screen then remove the separator line between qstns & answrs, also remove ansrs label */
     var lastContentOffset: CGFloat = 0  /* Added By Chandra on 22nd Jan 2020  */
-    
+    var fromMoreBtn = false
     
     var filterType: String!
     //= FilterEnum.Science.rawValue
@@ -163,15 +163,16 @@ class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISear
     @IBOutlet weak var notificationStack: UIStackView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         label = UILabel(frame: CGRect(x: 40, y: -3, width: 22, height: 22))
-               label.layer.cornerRadius =  label.frame.width/2
-               label.layer.masksToBounds = true
-               label.textAlignment = .center
-               label.textColor = UIColor.white
-               label.font = UIFont.systemFont(ofSize: 9)
-               label.backgroundColor = UIColor.red
-               self.notificationStack.addSubview(label)
-               userID = UserDefaults.standard.string(forKey: "userID")
+        label.layer.cornerRadius =  label.frame.width/2
+        label.layer.masksToBounds = true
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.font = UIFont.systemFont(ofSize: 9)
+        label.backgroundColor = UIColor.red
+        self.notificationStack.addSubview(label)
+        userID = UserDefaults.standard.string(forKey: "userID")
         label.isHidden = true // add by chandra 
         // extendedLayoutIncludesOpaqueBars = true // Commented By Ranjeet on 6th Dec 2019 , don't delete this line , future might reuse
         tableView.estimatedRowHeight = 100
@@ -202,7 +203,14 @@ class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISear
         searchController.extendedLayoutIncludesOpaqueBars = true // Added By Ranjeet on 6th Dec 2019
         searchController.edgesForExtendedLayout = .all // Added By Ranjeet on 6th Dec 2019
         // Include the search bar within the navigation bar.
-        self.navigationItem.titleView = self.searchController.searchBar
+        if fromMoreBtn {
+            viewRltdToNotGrpClsTestContntHight.constant = 0
+            
+        }
+        else {
+            self.navigationItem.titleView = self.searchController.searchBar
+        }
+        
         
         self.definesPresentationContext = true
         searchController.searchResultsUpdater = self as UISearchResultsUpdating
@@ -260,14 +268,14 @@ class HomeVC: UIViewController,UITableViewDataSource, UITableViewDelegate,UISear
         self.askqustnBtn.frame = CGRect(x:self.view.frame.width - 80 , y: self.view.frame.height - 230 , width: 80 , height: 80 )
         /* Moving Floating Button Code - ends here */
         
-//        let profile = Profile()
-//        if profile.isFull == true {
-//            QBRTCClient.instance().add((UIApplication.shared.delegate as! AppDelegate))
-//            (UIApplication.shared.delegate as! AppDelegate).connectToChat()
-//        }
+        //        let profile = Profile()
+        //        if profile.isFull == true {
+        //            QBRTCClient.instance().add((UIApplication.shared.delegate as! AppDelegate))
+        //            (UIApplication.shared.delegate as! AppDelegate).connectToChat()
+        //        }
         
         
-self.answerLblCache =  NSCache()
+        self.answerLblCache =  NSCache()
         
     }
     
@@ -275,7 +283,7 @@ self.answerLblCache =  NSCache()
         super.viewWillAppear(animated)
         self.countBoll.removeAll() // add by chandra for after integration
         let endPoint: String = "\(Endpoints.notificationListUrl)\(userID!)" // add by chandra for notification count
-               hitServer11(params: [:], endPoint: endPoint ,action: "getAllTestList", httpMethod: .get) // add by chandra for notification count
+        hitServer11(params: [:], endPoint: endPoint ,action: "getAllTestList", httpMethod: .get) // add by chandra for notification count
         isPopUpDismissed = true// Added By Yasodha on 16th Dec 2019
         isOpen = false // This line Added By Manoj
         /* Navigation related code starts here */
@@ -287,7 +295,7 @@ self.answerLblCache =  NSCache()
     
     
     
-      //  add by chandra for display the  count of notificants
+    //  add by chandra for display the  count of notificants
     private func hitServer11(params: [String:Any],endPoint: String, action: String,httpMethod: HTTPMethod) {
         
         LTWClient.shared.hitService(withBodyData: params, toEndPoint: endPoint, using: httpMethod, dueToAction: action){[unowned self] result in
@@ -663,26 +671,26 @@ self.answerLblCache =  NSCache()
         if homeElementList.count > 0{
             homeList  = homeElementList[indexPath.row]
             cell.subjctLbl.text = homeList["SubjectName"].stringValue
-//            cell.subjctLbl.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
-//             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
+            //            cell.subjctLbl.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
+            //             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
             cell.gradLbl.text = homeList["Tags"].stringValue
-             cell.answerPointsLbl.text = "\(homeList["AnswerPoints"].intValue) Points"
+            cell.answerPointsLbl.text = "\(homeList["AnswerPoints"].intValue) Points"
             var dateString = homeList["CreateDate"].stringValue
             dateString = dateString.replacingOccurrences(of: "\\.\\d+", with: "", options: .regularExpression)
             // For Decimal value
             cell.dateLbl.text = DateHelper.localToUTC(date: dateString, fromFormat: "yyyy-MM-dd'T'HH:mm:ss", toFormat: "MMM dd, yyyy")
-//            cell.dateLbl.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
-//             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
+            //            cell.dateLbl.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
+            //             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
             cell.scholLbl.text = homeList["Schools"].stringValue
             let typeOfPersonForHomeVC = PersonTypeForHomeVC.init(rawValue: homeList["PersonType"].intValue)
             if typeOfPersonForHomeVC != nil{
                 cell.prsnTyp.text = "\(String(describing: typeOfPersonForHomeVC!))"
-//                cell.prsnTyp.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
-//                 "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
+                //                cell.prsnTyp.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
+                //                 "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
             }
             cell.personNameLbl.text = homeList["FirstName"].stringValue // only 1st Name
-//            cell.personNameLbl.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
-//             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
+            //            cell.personNameLbl.font = UIFont.boldSystemFont(ofSize: 13.0)/* I tried to put
+            //             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
             
             let stringUrl = homeList["ProfileURL"].stringValue
             let thumbnail = stringUrl.replacingOccurrences(of: "actualimages/", with: "thumbnails/sm-")
@@ -724,8 +732,8 @@ self.answerLblCache =  NSCache()
             //            } else {
             //                // for default cases
             //            }
-//            cell.whatIsUrQustnLbl.font = UIFont.boldSystemFont(ofSize: 16.0)/* I tried to put
-//             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
+            //            cell.whatIsUrQustnLbl.font = UIFont.boldSystemFont(ofSize: 16.0)/* I tried to put
+            //             "Roboto-Bold" , but it was not working properly so let it be boldSystemFont only to get the bold text  */
             cell.whatIsUrQustnLbl.textColor = UIColor.darkGray
             
             /* Don't remove underline label code written below time being just uncomment it , later might useful somewhere else as per designer */
@@ -829,7 +837,7 @@ self.answerLblCache =  NSCache()
             }
             if cell.answerLbl.text == "Loading..." {
                 cell.answerLbl.text = ""
-               //  cell.answerVWHgt.constant = 0
+                //  cell.answerVWHgt.constant = 0
             }
             /* Added by yasodha on 29/1/2020 - ends here */
             
@@ -928,7 +936,7 @@ self.answerLblCache =  NSCache()
                 self.viewRltdToNotGrpClsTestContntHight.constant = 80
                 self.view.layoutIfNeeded()
             })
-           // print("**unhide")
+            // print("**unhide")
         }else{
             // Dragging up
             self.view.layoutIfNeeded() // force any pending operations to finish
@@ -936,7 +944,7 @@ self.answerLblCache =  NSCache()
                 self.viewRltdToNotGrpClsTestContntHight.constant = 0
                 self.view.layoutIfNeeded()
             })
-           // print("hide")
+            // print("hide")
         }
         activityIndicatorForHome.didScroll()
     }
@@ -955,7 +963,7 @@ self.answerLblCache =  NSCache()
     
     
     private func resetTableData(){
-          homePageIndex = 0
+        homePageIndex = 0
         /*  Updated By Ranjeet on 12th March 2020  , cause after  creating question , after refreshing , on Home Page that questions was not listing out quickly  */
         homeElementList.removeAll()
         DispatchQueue.main.async {
@@ -966,8 +974,8 @@ self.answerLblCache =  NSCache()
 
 extension HomeVC {
     private func hitServer(params: [String:Any],homeLandingEndPoint: String) {
-      //  startAnimating(type:.lineScale,color: UIColor.init(hex: "2DA9EC"))  // commeted by veeresh on 19/2/2020
-         /* added by veeresh on 19/2/2020 */
+        //  startAnimating(type:.lineScale,color: UIColor.init(hex: "2DA9EC"))  // commeted by veeresh on 19/2/2020
+        /* added by veeresh on 19/2/2020 */
         
         var shim = UIImageView()
         switch UIDevice.current.userInterfaceIdiom {
@@ -977,17 +985,17 @@ extension HomeVC {
         case .tv: shim = UIImageView(image: UIImage(named: "tab-home")!) ; shim.contentMode = .topLeft
         case .carPlay: shim = UIImageView(image: UIImage(named: "mobile-new")!)
         }//scaleAspectFill
-                if homeElementList.count < 1 {   /* added by veeresh on 26/2/2020 */
-                    tableView.backgroundView = shim  /* added by veeresh on 26/2/2020 */
-                shim.startShimmering()  /* added by veeresh on 26/2/2020 */
-                }
-
-         /* added by veeresh on 19/2/2020 */
+        if homeElementList.count < 1 {   /* added by veeresh on 26/2/2020 */
+            tableView.backgroundView = shim  /* added by veeresh on 26/2/2020 */
+            shim.startShimmering()  /* added by veeresh on 26/2/2020 */
+        }
+        
+        /* added by veeresh on 19/2/2020 */
         LTWClient.shared.hitService(withBodyData: params, toEndPoint: homeLandingEndPoint, using: .get, dueToAction: "HomeItems"){ [weak self] result in
             guard let _self = self else {
                 return
             }
-          //  _self.stopAnimating()  // commeted by veeresh on 19/2/2020
+            //  _self.stopAnimating()  // commeted by veeresh on 19/2/2020
             _self.activityIndicatorForHome.stop()
             switch result {
             case let .success(json,requestType):
@@ -1011,15 +1019,15 @@ extension HomeVC {
                 self!.tableView.backgroundView = UIView()
                 shim.stopShimmering()
                 shim.removeFromSuperview()
-                 /* added by veeresh on 19/2/2020 */
+                /* added by veeresh on 19/2/2020 */
                 break
             case .failure(let error):
                 print("MyError = \(error)")
                 /* added by veeresh on 19/2/2020 */
-                               self!.tableView.backgroundView = UIView()
-                               shim.stopShimmering()
-                               shim.removeFromSuperview()
-                                /* added by veeresh on 19/2/2020 */
+                self!.tableView.backgroundView = UIView()
+                shim.stopShimmering()
+                shim.removeFromSuperview()
+                /* added by veeresh on 19/2/2020 */
                 break
             }
         }
@@ -1112,7 +1120,7 @@ extension HomeVC: UISearchResultsUpdating {
             }
         }
     }
-
+    
     
     /* Added By Yashoda on 17th Dec 2019 - starts here */
     func performSearch(){
@@ -1156,8 +1164,8 @@ extension HomeVC: UISearchResultsUpdating {
         if self.tabelViewController != nil {
             if  !tabelViewController!.isBeingDismissed {   /* Added By Veeresh  on 25th Feb  2020   */
                 
-            self.tabelViewController?.dismiss(animated: true, completion: nil)
-            self.isPopUpDismissed = true
+                self.tabelViewController?.dismiss(animated: true, completion: nil)
+                self.isPopUpDismissed = true
             }
         }
     }
@@ -1180,18 +1188,18 @@ extension HomeVC: UISearchResultsUpdating {
         presentationController.sourceView = sourceView
         presentationController.sourceRect = sourceView.bounds
         presentationController.permittedArrowDirections = [.down, .up]
-       // self.present(controller, animated: true) /* Commented By Veeresh on 25th Feb 2020 */
-       /* Added By Veeresh on 25th Feb 2020  - starts here */
+        // self.present(controller, animated: true) /* Commented By Veeresh on 25th Feb 2020 */
+        /* Added By Veeresh on 25th Feb 2020  - starts here */
         if  !controller.isBeingDismissed && !controller.isBeingPresented{
-                    self.present(controller, animated: false)
-                       }
+            self.present(controller, animated: false)
+        }
         /* Added By Veeresh on 25th Feb 2020  - ends here */
     }
-     /* Added By Veeresh on 25th Feb 2020  - starts here */
+    /* Added By Veeresh on 25th Feb 2020  - starts here */
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         .none
     }
-     /* Added By Veeresh on 25th Feb 2020  - ends here */
+    /* Added By Veeresh on 25th Feb 2020  - ends here */
     
     func hitService(withBodyData data: [String: Any],toEndPoint url: String,using httpMethod: HTTPMethod,dueToAction requestType: String){
         print("EndPoint = \(url)"); print("BodyData = \(data)");print("Action = \(requestType)")
@@ -1213,7 +1221,7 @@ extension HomeVC: UISearchResultsUpdating {
                 if quesArrJSON.count > 0 {
                     if self.tabelViewController == nil {
                         self.tabelViewController = ArrayChoiceTableViewControllerToSearchQuestion(quesArrJSON,searchString: self.searchDataForAakaQuestionVC){[unowned self] (selectedJSON) in  /* Added [  searchString: self.searchDataForAakaQuestionVC) ]By Chandra on 22nd Jan 2020  */
-
+                            
                             print("selectedJSON = \(selectedJSON)")
                             let ansWersVC = self.storyboard?.instantiateViewController(withIdentifier: "answer") as! AnswersVC
                             ansWersVC.questionID = selectedJSON["QuestionId"].stringValue
